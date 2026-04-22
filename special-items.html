@@ -210,6 +210,25 @@
             .compare-row { grid-template-columns: 2fr 1fr 1fr; padding: 8px 10px; font-size: 0.8rem; }
             .compare-header { font-size: 0.7rem; }
         }
+
+        /* ── FA ICON STYLE ── */
+        .guide-card-header i,
+        .guide-card-content i,
+        .compare-card-header i,
+        .spawner-tier-header i,
+        .server-stat-icon i,
+        .info-icon i,
+        .tab-btn i,
+        .command-icon i {
+            color: var(--silver);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .guide-card-header i:hover,
+        .tab-btn:hover i,
+        .command-icon:hover i {
+            color: var(--light);
+            transform: scale(1.08);
+        }
     </style>
 </head>
 <body>
@@ -238,7 +257,7 @@
 
     <div class="page-header">
         <div class="container">
-            <h1>✨ Special Items</h1>
+            <h1><i class="fa-solid fa-sparkles"></i> Special Items</h1>
             <p>Special items you can buy and use on BlackWhale SMP</p>
         </div>
     </div>
@@ -250,7 +269,7 @@
                 <!-- How to Buy -->
                 <div class="guide-card">
                     <div class="guide-card-header">
-                        <div class="guide-card-icon">🛒</div>
+                        <div class="guide-card-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                         <h2>How to Buy Items</h2>
                     </div>
                     <ol class="steps">
@@ -272,7 +291,7 @@
                 <!-- 3x3 Pickaxe -->
                 <div class="guide-card">
                     <div class="guide-card-header">
-                        <div class="guide-card-icon">⛏️</div>
+                        <div class="guide-card-icon"><i class="fa-solid fa-hammer"></i></div>
                         <h2>3x3 Pickaxes</h2>
                     </div>
                     <div class="compare-section">

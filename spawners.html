@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -131,6 +131,25 @@
             .spawner-item { padding: 8px 14px; font-size: 0.8rem; }
             .spawner-tier-header { font-size: 0.85rem; padding: 12px 14px; }
         }
+
+        /* ── FA ICON STYLE ── */
+        .guide-card-header i,
+        .guide-card-content i,
+        .compare-card-header i,
+        .spawner-tier-header i,
+        .server-stat-icon i,
+        .info-icon i,
+        .tab-btn i,
+        .command-icon i {
+            color: var(--silver);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .guide-card-header i:hover,
+        .tab-btn:hover i,
+        .command-icon:hover i {
+            color: var(--light);
+            transform: scale(1.08);
+        }
     </style>
 </head>
 <body>
@@ -159,7 +178,7 @@
 
     <div class="page-header">
         <div class="container">
-            <h1>🧟 Spawners</h1>
+            <h1><i class="fa-solid fa-ghost"></i> Spawners</h1>
             <p>SmartSpawner comparison and break-even chart based on 490 mobs/hr</p>
         </div>
     </div>
@@ -171,7 +190,7 @@
             <div class="section-sub">SmartSpawners are significantly more efficient — here's how they compare</div>
             <div class="compare-grid">
                 <div class="compare-card">
-                    <div class="compare-card-header" style="background: rgba(195,199,206,0.06); color: var(--silver);">📊 Performance</div>
+                    <div class="compare-card-header" style="background: rgba(195,199,206,0.06); color: var(--silver);"><i class="fa-solid fa-chart-simple"></i> Performance</div>
                     <div class="compare-row compare-header-row">
                         <span></span><span>Vanilla</span><span>Smart</span>
                     </div>
@@ -186,21 +205,21 @@
                     </div>
                 </div>
                 <div class="compare-card">
-                    <div class="compare-card-header" style="background: rgba(195,199,206,0.06); color: var(--silver);">⚙️ Features</div>
+                    <div class="compare-card-header" style="background: rgba(195,199,206,0.06); color: var(--silver);"><i class="fa-solid fa-gear"></i> Features</div>
                     <div class="compare-row compare-header-row">
                         <span></span><span>Vanilla</span><span>Smart</span>
                     </div>
                     <div class="compare-row">
-                        <span>Auto-kills &amp; collects</span><span class="worse">❌</span><span class="better">✅</span>
+                        <span>Auto-kills &amp; collects</span><span class="worse"><i class="fa-solid fa-xmark"></i></span><span class="better"><i class="fa-solid fa-check"></i></span>
                     </div>
                     <div class="compare-row">
-                        <span>Sell-all button</span><span class="worse">❌</span><span class="better">✅</span>
+                        <span>Sell-all button</span><span class="worse"><i class="fa-solid fa-xmark"></i></span><span class="better"><i class="fa-solid fa-check"></i></span>
                     </div>
                     <div class="compare-row">
-                        <span>Stackable (up to 10,000)</span><span class="worse">❌</span><span class="better">✅</span>
+                        <span>Stackable (up to 10,000)</span><span class="worse"><i class="fa-solid fa-xmark"></i></span><span class="better"><i class="fa-solid fa-check"></i></span>
                     </div>
                     <div class="compare-row">
-                        <span>Explosion proof</span><span class="worse">❌</span><span class="better">✅</span>
+                        <span>Explosion proof</span><span class="worse"><i class="fa-solid fa-xmark"></i></span><span class="better"><i class="fa-solid fa-check"></i></span>
                     </div>
                 </div>
             </div>
@@ -210,11 +229,11 @@
     <!-- SMARTSPAWNERS GUIDE -->
     <section class="section">
         <div class="container">
-            <div class="section-title">⚙️ SmartSpawners Guide</div>
+            <div class="section-title"><i class="fa-solid fa-gear"></i> SmartSpawners Guide</div>
             <div class="section-sub">Learn everything you need to know about SmartSpawners and how to use them effectively</div>
             <div class="guide-grid">
                 <div class="guide-card">
-                    <div class="guide-card-header">🚀 How It Works</div>
+                    <div class="guide-card-header"><i class="fa-solid fa-rocket"></i> How It Works</div>
                     <div class="guide-card-content">
                         <ul class="guide-list">
                             <li><strong>Place</strong> the spawner down</li>
@@ -224,13 +243,13 @@
                             <li><strong>Right-click</strong> to open the GUI</li>
                         </ul>
                         <div class="highlight">
-                            <strong>💡 Tip:</strong> No killing mobs or AFK grinders needed — it's fully automatic!
+                            <strong><i class="fa-solid fa-lightbulb"></i> Tip:</strong> No killing mobs or AFK grinders needed — it's fully automatic!
                         </div>
                     </div>
                 </div>
 
                 <div class="guide-card">
-                    <div class="guide-card-header">📦 Storage System</div>
+                    <div class="guide-card-header"><i class="fa-solid fa-boxes-stacked"></i> Storage System</div>
                     <div class="guide-card-content">
                         <ul class="guide-list">
                             <li><strong>Capacity:</strong> 45 item slots (1 storage page)</li>
@@ -239,13 +258,13 @@
                             <li><strong>Claim XP</strong> anytime from storage</li>
                         </ul>
                         <div class="highlight">
-                            <strong>⚠️ Note:</strong> If storage is full, the spawner pauses until you empty it. Items can be taken out or sold without breaking the spawner.
+                            <strong><i class="fa-solid fa-triangle-exclamation"></i> Note:</strong> If storage is full, the spawner pauses until you empty it. Items can be taken out or sold without breaking the spawner.
                         </div>
                     </div>
                 </div>
 
                 <div class="guide-card">
-                    <div class="guide-card-header">🔧 Stacking Spawners</div>
+                    <div class="guide-card-header"><i class="fa-solid fa-gears"></i> Stacking Spawners</div>
                     <div class="guide-card-content">
                         <ul class="guide-list">
                             <li><strong>Same type spawners</strong> can be stacked together</li>
@@ -254,13 +273,13 @@
                             <li><strong>Stack method:</strong> Right-click one spawner with another of the same type in hand</li>
                         </ul>
                         <div class="highlight">
-                            <strong>📊 Spawn Rate:</strong> 1-5 mobs per cycle per spawner. Higher stacks multiply this output!
+                            <strong><i class="fa-solid fa-chart-simple"></i> Spawn Rate:</strong> 1-5 mobs per cycle per spawner. Higher stacks multiply this output!
                         </div>
                     </div>
                 </div>
 
                 <div class="guide-card">
-                    <div class="guide-card-header">⛏️ Breaking & Collecting</div>
+                    <div class="guide-card-header"><i class="fa-solid fa-pickaxe"></i> Breaking &amp; Collecting</div>
                     <div class="guide-card-content">
                         <ul class="guide-list">
                             <li><strong>Requires:</strong> Silk Touch pickaxe</li>
@@ -273,7 +292,7 @@
                 </div>
 
                 <div class="guide-card">
-                    <div class="guide-card-header">💰 Selling Items</div>
+                    <div class="guide-card-header"><i class="fa-solid fa-coins"></i> Selling Items</div>
                     <div class="guide-card-content">
                         <ul class="guide-list">
                             <li><strong>Method 1:</strong> Use the Sell button in spawner GUI</li>
@@ -285,7 +304,7 @@
                 </div>
 
                 <div class="guide-card">
-                    <div class="guide-card-header">✨ XP Management</div>
+                    <div class="guide-card-header"><i class="fa-solid fa-bolt"></i> XP Management</div>
                     <div class="guide-card-content">
                         <ul class="guide-list">
                             <li><strong>Accumulates</strong> XP over time internally</li>
@@ -294,7 +313,7 @@
                             <li><strong>Use for Mending:</strong> Repair items directly from GUI using stored XP</li>
                         </ul>
                         <div class="highlight">
-                            <strong>🎯 Bonus:</strong> XP repair works with Mending items right from the spawner interface!
+                            <strong><i class="fa-solid fa-star"></i> Bonus:</strong> XP repair works with Mending items right from the spawner interface!
                         </div>
                     </div>
                 </div>
@@ -322,7 +341,7 @@
             <div class="section-sub">Time to break even on spawner cost at 490 mobs/hr</div>
             <div class="spawner-tiers">
                 <div class="spawner-tier tier-green">
-                    <div class="spawner-tier-header">🟢 6hr Break-Even</div>
+                    <div class="spawner-tier-header"><i class="fa-solid fa-circle" style="color:#86efac"></i> 6hr Break-Even</div>
                     <div class="spawner-list">
                         <div class="spawner-item"><span class="spawner-item-name">Netherite Ingot Spawner</span><span class="spawner-item-value">$2,205,000</span></div>
                         <div class="spawner-item"><span class="spawner-item-name">Nether Star Spawner</span><span class="spawner-item-value">$882,000</span></div>
@@ -344,7 +363,7 @@
                     </div>
                 </div>
                 <div class="spawner-tier tier-yellow">
-                    <div class="spawner-tier-header">🟡 10hr Break-Even</div>
+                    <div class="spawner-tier-header"><i class="fa-solid fa-circle-half-stroke" style="color:#fde68a"></i> 10hr Break-Even</div>
                     <div class="spawner-list">
                         <div class="spawner-item"><span class="spawner-item-name">Emerald Spawner</span><span class="spawner-item-value">$122,500</span></div>
                         <div class="spawner-item"><span class="spawner-item-name">Diamond Spawner</span><span class="spawner-item-value">$98,000</span></div>
@@ -377,7 +396,7 @@
                     </div>
                 </div>
                 <div class="spawner-tier tier-red">
-                    <div class="spawner-tier-header">🔴 15hr Break-Even</div>
+                    <div class="spawner-tier-header"><i class="fa-solid fa-circle-xmark" style="color:#fca5a5"></i> 15hr Break-Even</div>
                     <div class="spawner-list">
                         <div class="spawner-item"><span class="spawner-item-name">Wither Skeleton</span><span class="spawner-item-value">$31,274</span></div>
                         <div class="spawner-item"><span class="spawner-item-name">Creeper</span><span class="spawner-item-value">$22,050</span></div>
