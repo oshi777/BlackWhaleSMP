@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spawners — BlackWhale SMP</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:      #0B0C0E;
+            --surface: #1E2126;
+            --muted:   #3A3F47;
+            --silver:  #C3C7CE;
+            --light:   #F8F8F9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--light); line-height: 1.6; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--surface); }
+        ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+        * { scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; }
+        header.scrolled { background: rgba(11,12,14,0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.4rem; color: var(--light); text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 0; overflow: visible; flex-shrink: 0; }
+        .logo-icon img { width: 40px; height: 40px; object-fit: contain; display: block; background: var(--muted); border-radius: 8px; padding: 4px; }
+        .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+        .nav-links a { color: var(--silver); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 5px 0; transition: color 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--silver); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--light); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--light); }
+        .nav-links a.active::after { width: 100%; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .btn { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-block; transition: all 0.3s ease; text-align: center; cursor: pointer; border: none; font-family: 'Inter', sans-serif; white-space: nowrap; }
+        .btn-primary { background: var(--muted); color: var(--light); }
+        .btn-primary:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-secondary { background: transparent; color: var(--light); border: 2px solid var(--muted); }
+        .btn-secondary:hover { border-color: var(--silver); background: rgba(195,199,206,0.08); transform: translateY(-2px); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        /* PAGE HEADER */
+        .page-header { padding: 110px 0 50px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(58,63,71,0.3) 0%, transparent 70%); }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 10px; }
+        .page-header p { color: var(--silver); font-size: 1rem; }
+
+        /* SECTION */
+        .section { padding: 60px 0; }
+        .section.alt { background: var(--surface); }
+        .section-title { font-size: 1.6rem; font-weight: 700; color: var(--light); margin-bottom: 8px; }
+        .section-sub { color: var(--silver); font-size: 0.95rem; margin-bottom: 32px; }
+
+        /* COMPARE */
+        .compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 0; }
+        .compare-card { background: var(--bg); border: 1px solid rgba(195,199,206,0.08); border-radius: 14px; overflow: hidden; }
+        .compare-card-header { padding: 14px 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.8px; }
+        .compare-table { width: 100%; border-collapse: collapse; }
+        .compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 10px 16px; border-bottom: 1px solid rgba(195,199,206,0.06); font-size: 0.88rem; align-items: center; }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-header-row { background: var(--muted); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--light); }
+        .compare-row:not(.compare-header-row) { color: var(--silver); }
+        .compare-row:not(.compare-header-row):hover { background: rgba(195,199,206,0.03); }
+        .compare-row span:first-child { color: var(--light); font-weight: 500; }
+        .better { color: #86efac; font-weight: 600; }
+        .worse { color: #fca5a5; }
+        .compare-row small { font-size: 0.75rem; opacity: 0.8; }
+
+        /* BREAK-EVEN */
+        .spawner-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .spawner-tier { background: var(--bg); border: 1px solid rgba(195,199,206,0.08); border-radius: 14px; overflow: hidden; }
+        .spawner-tier-header { padding: 14px 20px; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .tier-red .spawner-tier-header { background: rgba(239,68,68,0.15); color: #fca5a5; }
+        .tier-yellow .spawner-tier-header { background: rgba(234,179,8,0.15); color: #fde68a; }
+        .tier-green .spawner-tier-header { background: rgba(74,222,128,0.15); color: #86efac; }
+        .spawner-list { padding: 8px 0; }
+        .spawner-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 20px; border-bottom: 1px solid rgba(195,199,206,0.05); font-size: 0.88rem; }
+        .spawner-item:last-child { border-bottom: none; }
+        .spawner-item-name { color: var(--silver); }
+        .spawner-item-value { color: var(--light); font-weight: 600; font-size: 0.85rem; }
+
+        /* GUIDE SECTION */
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .guide-card { background: var(--bg); border: 1px solid rgba(195,199,206,0.08); border-radius: 14px; overflow: hidden; transition: all 0.3s ease; }
+        .guide-card:hover { border-color: rgba(195,199,206,0.2); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        .guide-card.wide { grid-column: 1 / -1; }
+        @media (max-width: 768px) { .guide-card.wide { grid-column: span 1; } }
+        .guide-card-header { padding: 16px 20px; font-weight: 700; font-size: 1rem; background: rgba(58,63,71,0.4); display: flex; align-items: center; gap: 10px; }
+        .guide-card-content { padding: 20px; font-size: 0.9rem; line-height: 1.7; }
+        .guide-card-content strong { color: var(--light); }
+        .guide-card-content em { color: var(--silver); }
+        .guide-list { list-style: none; margin-top: 12px; }
+        .guide-list li { padding: 6px 0; color: var(--silver); display: flex; align-items: flex-start; gap: 8px; }
+        .guide-list li::before { content: "→"; color: var(--muted); flex-shrink: 0; }
+        .highlight { background: rgba(195,199,206,0.06); padding: 12px; border-radius: 8px; border-left: 3px solid var(--muted); margin-top: 12px; }
+        .highlight strong { color: #86efac; }
+
+        /* FOOTER */
+        footer { background: #0B0C0E; border-top: 1px solid rgba(195,199,206,0.08); padding: 50px 0 28px; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 36px; margin-bottom: 36px; }
+        .footer-col h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--light); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--muted); display: inline-block; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--light); }
+        .copyright { text-align: center; padding-top: 24px; border-top: 1px solid rgba(195,199,206,0.08); color: var(--muted); font-size: 0.85rem; }
+        @media (max-width: 768px) { 
+            .footer-grid { flex-direction: column; gap: 24px; } 
+            .spawner-tiers { grid-template-columns: 1fr; } 
+            .compare-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+        @media (max-width: 480px) {
+            .page-header { padding: 80px 0 40px; }
+            .page-header h1 { font-size: 1.6rem; }
+            .page-header p { font-size: 0.9rem; }
+            .section-title { font-size: 1.4rem; }
+            .section-sub { font-size: 0.9rem; }
+            .compare-row { grid-template-columns: 2fr 1fr 1fr; padding: 8px 10px; font-size: 0.8rem; }
+            .compare-header-row { font-size: 0.7rem; }
+            .spawner-item { padding: 8px 14px; font-size: 0.8rem; }
+            .spawner-tier-header { font-size: 0.85rem; padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><img src="logo.png" alt="BlackWhale SMP"></div>
+                    <span>BlackWhale SMP</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#server-info">Server Info</a>
+                    <a href="index.html#commands">Commands</a>
+                    <a href="index.html#shop">Shop</a>
+                    <a href="spawners.html" class="active">Spawners</a>
+                    <a href="special-items.html">Special Items</a>
+                </div>
+                <div class="nav-buttons">
+                    <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
+                    <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>🧟 Spawners</h1>
+            <p>SmartSpawner comparison and break-even chart based on 490 mobs/hr</p>
+        </div>
+    </div>
+
+    <!-- VANILLA VS SMART -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">Vanilla Spawner vs SmartSpawner</div>
+            <div class="section-sub">SmartSpawners are significantly more efficient — here's how they compare</div>
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <div class="compare-card-header" style="background: rgba(195,199,206,0.06); color: var(--silver);">📊 Performance</div>
+                    <div class="compare-row compare-header-row">
+                        <span></span><span>Vanilla</span><span>Smart</span>
+                    </div>
+                    <div class="compare-row">
+                        <span>Mobs/hr</span><span class="worse">360</span><span class="better">490 <small>(+36%)</small></span>
+                    </div>
+                    <div class="compare-row">
+                        <span>XP/kill</span><span>Normal</span><span class="better">Same + stored</span>
+                    </div>
+                    <div class="compare-row">
+                        <span>XP storage</span><span class="worse">None</span><span class="better">50,000</span>
+                    </div>
+                </div>
+                <div class="compare-card">
+                    <div class="compare-card-header" style="background: rgba(195,199,206,0.06); color: var(--silver);">⚙️ Features</div>
+                    <div class="compare-row compare-header-row">
+                        <span></span><span>Vanilla</span><span>Smart</span>
+                    </div>
+                    <div class="compare-row">
+                        <span>Auto-kills &amp; collects</span><span class="worse">❌</span><span class="better">✅</span>
+                    </div>
+                    <div class="compare-row">
+                        <span>Sell-all button</span><span class="worse">❌</span><span class="better">✅</span>
+                    </div>
+                    <div class="compare-row">
+                        <span>Stackable (up to 10,000)</span><span class="worse">❌</span><span class="better">✅</span>
+                    </div>
+                    <div class="compare-row">
+                        <span>Explosion proof</span><span class="worse">❌</span><span class="better">✅</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SMARTSPAWNERS GUIDE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">⚙️ SmartSpawners Guide</div>
+            <div class="section-sub">Learn everything you need to know about SmartSpawners and how to use them effectively</div>
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <div class="guide-card-header">🚀 How It Works</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Place</strong> the spawner down</li>
+                            <li><strong>Stay</strong> within 16 blocks to keep it active</li>
+                            <li><strong>Every 22 seconds</strong> it generates drops automatically</li>
+                            <li><strong>Auto-collect</strong> drops into internal storage</li>
+                            <li><strong>Right-click</strong> to open the GUI</li>
+                        </ul>
+                        <div class="highlight">
+                            <strong>💡 Tip:</strong> No killing mobs or AFK grinders needed — it's fully automatic!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-card-header">📦 Storage System</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Capacity:</strong> 45 item slots (1 storage page)</li>
+                            <li><strong>Collect items</strong> directly from GUI</li>
+                            <li><strong>Sell directly</strong> from GUI (no item removal needed)</li>
+                            <li><strong>Claim XP</strong> anytime from storage</li>
+                        </ul>
+                        <div class="highlight">
+                            <strong>⚠️ Note:</strong> If storage is full, the spawner pauses until you empty it. Items can be taken out or sold without breaking the spawner.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-card-header">🔧 Stacking Spawners</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Same type spawners</strong> can be stacked together</li>
+                            <li><strong>Max stack size:</strong> 10,000 spawners</li>
+                            <li><strong>More stacked</strong> = more drops per cycle</li>
+                            <li><strong>Stack method:</strong> Right-click one spawner with another of the same type in hand</li>
+                        </ul>
+                        <div class="highlight">
+                            <strong>📊 Spawn Rate:</strong> 1-5 mobs per cycle per spawner. Higher stacks multiply this output!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-card-header">⛏️ Breaking & Collecting</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Requires:</strong> Silk Touch pickaxe</li>
+                            <li><strong>Allowed tools:</strong> Iron, Golden, Diamond, or Netherite Pickaxe with Silk Touch</li>
+                            <li><strong>Breaking without Silk Touch</strong> = You lose vanilla spawners</li>
+                            <li><strong>SmartSpawners</strong> won't break without Silk Touch</li>
+                            <li><strong>Dungeon spawners</strong> can also be collected the same way</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-card-header">💰 Selling Items</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Method 1:</strong> Use the Sell button in spawner GUI</li>
+                            <li><strong>Method 2:</strong> Take items out and sell via /shop manually</li>
+                            <li><strong>Prices</strong> are pulled from the server shop (EconomyShopGUI-Premium)</li>
+                            <li><strong>Convenience:</strong> Sell directly without managing inventory</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-card-header">✨ XP Management</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Accumulates</strong> XP over time internally</li>
+                            <li><strong>Max stored XP:</strong> 50,000 points</li>
+                            <li><strong>Claim anytime</strong> from the GUI to level up</li>
+                            <li><strong>Use for Mending:</strong> Repair items directly from GUI using stored XP</li>
+                        </ul>
+                        <div class="highlight">
+                            <strong>🎯 Bonus:</strong> XP repair works with Mending items right from the spawner interface!
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="guide-card wide">
+                    <div class="guide-card-header"><i class="fas fa-gauge"></i> Spawn Rate</div>
+                    <div class="guide-card-content">
+                        <ul class="guide-list">
+                            <li><strong>Per Spawner:</strong> 1-5 mobs per cycle</li>
+                            <li><strong>Cycle Duration:</strong> Every 22 seconds</li>
+                            <li><strong>Average:</strong> 3 mobs per 22 seconds</li>
+                            <li><strong>Variation:</strong> Exact rate depends on mob type and drop rates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BREAK-EVEN CHART -->
+    <section class="section alt">
+        <div class="container">
+            <div class="section-title">Break-Even Chart</div>
+            <div class="section-sub">Time to break even on spawner cost at 490 mobs/hr</div>
+            <div class="spawner-tiers">
+                <div class="spawner-tier tier-green">
+                    <div class="spawner-tier-header">🟢 6hr Break-Even</div>
+                    <div class="spawner-list">
+                        <div class="spawner-item"><span class="spawner-item-name">Nether Star Spawner</span><span class="spawner-item-value">$540,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Netherite Spawner</span><span class="spawner-item-value">$432,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Totem Spawner</span><span class="spawner-item-value">$324,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Evoker</span><span class="spawner-item-value">$351,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Diamond Spawner</span><span class="spawner-item-value">$90,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Iron Golem</span><span class="spawner-item-value">$86,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Warden</span><span class="spawner-item-value">$64,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Elder Guardian</span><span class="spawner-item-value">$64,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Ravager</span><span class="spawner-item-value">$43,200,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Witch</span><span class="spawner-item-value">$32,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Vindicator</span><span class="spawner-item-value">$30,240,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Ghast</span><span class="spawner-item-value">$19,440,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Mushroom Cow / Cow</span><span class="spawner-item-value">$19,080,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Glow Squid</span><span class="spawner-item-value">$17,280,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Magma Cube</span><span class="spawner-item-value">$17,280,000</span></div>
+                    </div>
+                </div>
+                <div class="spawner-tier tier-yellow">
+                    <div class="spawner-tier-header">🟡 10hr Break-Even</div>
+                    <div class="spawner-list">
+                        <div class="spawner-item"><span class="spawner-item-name">Emerald Spawner</span><span class="spawner-item-value">$54,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Gold Ingot Spawner</span><span class="spawner-item-value">$32,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Slime</span><span class="spawner-item-value">$18,900,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Guardian</span><span class="spawner-item-value">$18,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Rabbit</span><span class="spawner-item-value">$17,820,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Hoglin</span><span class="spawner-item-value">$15,120,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Horse / Donkey / Mule / Llama</span><span class="spawner-item-value">$14,460,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Pig</span><span class="spawner-item-value">$14,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Pufferfish</span><span class="spawner-item-value">$13,500,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Blaze</span><span class="spawner-item-value">$10,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Phantom</span><span class="spawner-item-value">$10,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Squid</span><span class="spawner-item-value">$10,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Tropical Fish</span><span class="spawner-item-value">$10,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Sheep</span><span class="spawner-item-value">$9,900,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Strider</span><span class="spawner-item-value">$9,450,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Chicken</span><span class="spawner-item-value">$9,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Enderman</span><span class="spawner-item-value">$9,000,000</span></div>
+                    </div>
+                </div>
+                <div class="spawner-tier tier-red">
+                    <div class="spawner-tier-header">🔴 15hr Break-Even</div>
+                    <div class="spawner-list">
+                        <div class="spawner-item"><span class="spawner-item-name">Wither Skeleton</span><span class="spawner-item-value">$27,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Shulker</span><span class="spawner-item-value">$22,500,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Creeper</span><span class="spawner-item-value">$10,860,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Bogged / Stray / Parched</span><span class="spawner-item-value">$9,720,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Copper Golem</span><span class="spawner-item-value">$9,720,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Skeleton / Spider / Piglin...</span><span class="spawner-item-value">$8,100,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Piglin Brute</span><span class="spawner-item-value">$8,265,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Salmon</span><span class="spawner-item-value">$8,100,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Coal Spawner</span><span class="spawner-item-value">$5,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Cod</span><span class="spawner-item-value">$5,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Parrot / Zoglin</span><span class="spawner-item-value">$5,400,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Skeleton Horse</span><span class="spawner-item-value">$3,615,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Cat</span><span class="spawner-item-value">$2,718,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Armadillo / Axolotl / Bee...</span><span class="spawner-item-value">$2,700,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Drowned</span><span class="spawner-item-value">$2,250,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Dolphin / Husk / Turtle / Zombie</span><span class="spawner-item-value">$1,800,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Snow Golem</span><span class="spawner-item-value">$405,000</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>BlackWhale SMP</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#server-info"><i class="fas fa-network-wired" aria-hidden="true"></i> Server Info</a></li>
+                        <li><a href="index.html#commands"><i class="fas fa-slash" aria-hidden="true"></i> Commands</a></li>
+                        <li><a href="index.html#shop"><i class="fas fa-coins" aria-hidden="true"></i> Shop Prices</a></li>
+                        <li><a href="spawners.html"><i class="fas fa-skull" aria-hidden="true"></i> Spawners</a></li>
+                        <li><a href="special-items.html"><i class="fas fa-book" aria-hidden="true"></i> Special Items</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
+                        <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Server IP</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-cube" aria-hidden="true"></i> Java: homes-dying.gl.joinmc.link</a></li>
+                        <li><a href="#"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: wanted-businesses.gl.at.ply.gg:3244</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">&copy; 2025 BlackWhale SMP. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    </script>
+</body>
+</html>
+
