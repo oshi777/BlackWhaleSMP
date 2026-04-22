@@ -83,7 +83,7 @@
         .tier-red .spawner-tier-header { background: rgba(239,68,68,0.15); color: #fca5a5; }
         .tier-yellow .spawner-tier-header { background: rgba(234,179,8,0.15); color: #fde68a; }
         .tier-green .spawner-tier-header { background: rgba(74,222,128,0.15); color: #86efac; }
-        .spawner-list { padding: 8px 0; }
+        .spawner-list { padding: 8px 0; height: 420px; overflow-y: auto; }
         .spawner-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 20px; border-bottom: 1px solid rgba(195,199,206,0.05); font-size: 0.88rem; }
         .spawner-item:last-child { border-bottom: none; }
         .spawner-item-name { color: var(--silver); }
@@ -324,65 +324,90 @@
                 <div class="spawner-tier tier-green">
                     <div class="spawner-tier-header">🟢 6hr Break-Even</div>
                     <div class="spawner-list">
-                        <div class="spawner-item"><span class="spawner-item-name">Nether Star Spawner</span><span class="spawner-item-value">$540,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Netherite Spawner</span><span class="spawner-item-value">$432,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Totem Spawner</span><span class="spawner-item-value">$324,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Evoker</span><span class="spawner-item-value">$351,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Diamond Spawner</span><span class="spawner-item-value">$90,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Iron Golem</span><span class="spawner-item-value">$86,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Warden</span><span class="spawner-item-value">$64,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Elder Guardian</span><span class="spawner-item-value">$64,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Ravager</span><span class="spawner-item-value">$43,200,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Witch</span><span class="spawner-item-value">$32,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Vindicator</span><span class="spawner-item-value">$30,240,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Ghast</span><span class="spawner-item-value">$19,440,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Mushroom Cow / Cow</span><span class="spawner-item-value">$19,080,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Glow Squid</span><span class="spawner-item-value">$17,280,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Magma Cube</span><span class="spawner-item-value">$17,280,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Netherite Ingot Spawner</span><span class="spawner-item-value">$2,205,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Nether Star Spawner</span><span class="spawner-item-value">$882,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Evoker</span><span class="spawner-item-value">$477,750</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Totem of Undying Spawner</span><span class="spawner-item-value">$441,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Elder Guardian</span><span class="spawner-item-value">$126,918</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Iron Golem</span><span class="spawner-item-value">$119,070</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Shulker</span><span class="spawner-item-value">$91,875</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Warden</span><span class="spawner-item-value">$88,200</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Ravager</span><span class="spawner-item-value">$58,800</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Witch</span><span class="spawner-item-value">$50,053</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Copper Golem</span><span class="spawner-item-value">$44,100</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Vindicator</span><span class="spawner-item-value">$40,497</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Ghast</span><span class="spawner-item-value">$30,870</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Cow</span><span class="spawner-item-value">$23,520</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Mushroom Cow</span><span class="spawner-item-value">$23,520</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Glow Squid</span><span class="spawner-item-value">$23,520</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Magma Cube</span><span class="spawner-item-value">$23,520</span></div>
                     </div>
                 </div>
                 <div class="spawner-tier tier-yellow">
                     <div class="spawner-tier-header">🟡 10hr Break-Even</div>
                     <div class="spawner-list">
-                        <div class="spawner-item"><span class="spawner-item-name">Emerald Spawner</span><span class="spawner-item-value">$54,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Gold Ingot Spawner</span><span class="spawner-item-value">$32,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Slime</span><span class="spawner-item-value">$18,900,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Guardian</span><span class="spawner-item-value">$18,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Rabbit</span><span class="spawner-item-value">$17,820,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Hoglin</span><span class="spawner-item-value">$15,120,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Horse / Donkey / Mule / Llama</span><span class="spawner-item-value">$14,460,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Pig</span><span class="spawner-item-value">$14,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Pufferfish</span><span class="spawner-item-value">$13,500,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Blaze</span><span class="spawner-item-value">$10,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Phantom</span><span class="spawner-item-value">$10,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Squid</span><span class="spawner-item-value">$10,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Tropical Fish</span><span class="spawner-item-value">$10,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Sheep</span><span class="spawner-item-value">$9,900,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Strider</span><span class="spawner-item-value">$9,450,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Chicken</span><span class="spawner-item-value">$9,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Enderman</span><span class="spawner-item-value">$9,000,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Emerald Spawner</span><span class="spawner-item-value">$122,500</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Diamond Spawner</span><span class="spawner-item-value">$98,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Gold Ingot Spawner</span><span class="spawner-item-value">$73,500</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Slime</span><span class="spawner-item-value">$42,875</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Guardian</span><span class="spawner-item-value">$42,140</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Hoglin</span><span class="spawner-item-value">$39,200</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Blaze</span><span class="spawner-item-value">$29,400</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Phantom</span><span class="spawner-item-value">$29,400</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Enderman</span><span class="spawner-item-value">$24,500</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Trader Llama</span><span class="spawner-item-value">$19,600</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Horse</span><span class="spawner-item-value">$19,600</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Donkey</span><span class="spawner-item-value">$19,600</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Mule</span><span class="spawner-item-value">$19,600</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Llama</span><span class="spawner-item-value">$19,600</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Pig</span><span class="spawner-item-value">$19,600</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Zombified Piglin</span><span class="spawner-item-value">$19,478</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Bogged</span><span class="spawner-item-value">$18,375</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Stray</span><span class="spawner-item-value">$18,375</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Parched</span><span class="spawner-item-value">$18,375</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Rabbit</span><span class="spawner-item-value">$17,395</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Sheep</span><span class="spawner-item-value">$15,925</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Squid</span><span class="spawner-item-value">$14,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Tropical Fish</span><span class="spawner-item-value">$14,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Skeleton</span><span class="spawner-item-value">$14,159</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Strider</span><span class="spawner-item-value">$12,863</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Chicken</span><span class="spawner-item-value">$12,250</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Pufferfish</span><span class="spawner-item-value">$12,250</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Snow Golem</span><span class="spawner-item-value">$10,344</span></div>
                     </div>
                 </div>
                 <div class="spawner-tier tier-red">
                     <div class="spawner-tier-header">🔴 15hr Break-Even</div>
                     <div class="spawner-list">
-                        <div class="spawner-item"><span class="spawner-item-name">Wither Skeleton</span><span class="spawner-item-value">$27,000,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Shulker</span><span class="spawner-item-value">$22,500,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Creeper</span><span class="spawner-item-value">$10,860,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Bogged / Stray / Parched</span><span class="spawner-item-value">$9,720,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Copper Golem</span><span class="spawner-item-value">$9,720,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Skeleton / Spider / Piglin...</span><span class="spawner-item-value">$8,100,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Piglin Brute</span><span class="spawner-item-value">$8,265,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Salmon</span><span class="spawner-item-value">$8,100,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Coal Spawner</span><span class="spawner-item-value">$5,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Cod</span><span class="spawner-item-value">$5,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Parrot / Zoglin</span><span class="spawner-item-value">$5,400,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Skeleton Horse</span><span class="spawner-item-value">$3,615,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Cat</span><span class="spawner-item-value">$2,718,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Armadillo / Axolotl / Bee...</span><span class="spawner-item-value">$2,700,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Drowned</span><span class="spawner-item-value">$2,250,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Dolphin / Husk / Turtle / Zombie</span><span class="spawner-item-value">$1,800,000</span></div>
-                        <div class="spawner-item"><span class="spawner-item-name">Snow Golem</span><span class="spawner-item-value">$405,000</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Wither Skeleton</span><span class="spawner-item-value">$31,274</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Creeper</span><span class="spawner-item-value">$22,050</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Piglin</span><span class="spawner-item-value">$14,379</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Piglin Brute</span><span class="spawner-item-value">$11,246</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Salmon</span><span class="spawner-item-value">$11,025</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Coal Spawner</span><span class="spawner-item-value">$11,025</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Cave Spider</span><span class="spawner-item-value">$10,420</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Spider</span><span class="spawner-item-value">$10,420</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Snow Golem</span><span class="spawner-item-value">$10,344</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Parrot</span><span class="spawner-item-value">$9,188</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Pillager</span><span class="spawner-item-value">$8,673</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Drowned</span><span class="spawner-item-value">$8,049</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Cod</span><span class="spawner-item-value">$7,350</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Skeleton Horse</span><span class="spawner-item-value">$7,350</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Zoglin</span><span class="spawner-item-value">$7,350</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Cat</span><span class="spawner-item-value">$5,513</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Dolphin</span><span class="spawner-item-value">$4,900</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Husk</span><span class="spawner-item-value">$4,900</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Turtle</span><span class="spawner-item-value">$4,900</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Zombie</span><span class="spawner-item-value">$4,900</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Zombie Villager</span><span class="spawner-item-value">$4,900</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Armadillo</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Axolotl</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Bee</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Breeze</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Fox</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Nautilus</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Panda</span><span class="spawner-item-value">$2,700</span></div>
+                        <div class="spawner-item"><span class="spawner-item-name">Polar Bear</span><span class="spawner-item-value">$2,700</span></div>
                     </div>
                 </div>
             </div>
