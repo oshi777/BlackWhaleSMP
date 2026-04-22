@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Items — BlackWhale SMP</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:      #0B0C0E;
+            --surface: #1E2126;
+            --muted:   #3A3F47;
+            --silver:  #C3C7CE;
+            --light:   #F8F8F9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--light); line-height: 1.6; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--surface); }
+        ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+        * { scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 15px 0; transition: all 0.3s ease;
+        }
+        header.scrolled {
+            background: rgba(11,12,14,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.4rem; color: var(--light); text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 0; overflow: visible; flex-shrink: 0; }
+        .logo-icon img { width: 40px; height: 40px; object-fit: contain; display: block; background: var(--muted); border-radius: 8px; padding: 4px; }
+        .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+        .nav-links a { color: var(--silver); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 5px 0; transition: color 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--silver); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--light); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--light); }
+        .nav-links a.active::after { width: 100%; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .btn { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-block; transition: all 0.3s ease; text-align: center; cursor: pointer; border: none; font-family: 'Inter', sans-serif; white-space: nowrap; }
+        .btn-primary { background: var(--muted); color: var(--light); }
+        .btn-primary:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-secondary { background: transparent; color: var(--light); border: 2px solid var(--muted); }
+        .btn-secondary:hover { border-color: var(--silver); background: rgba(195,199,206,0.08); transform: translateY(-2px); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 110px 0 50px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 0%, rgba(58,63,71,0.3) 0%, transparent 70%);
+        }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 10px; }
+        .page-header p { color: var(--silver); font-size: 1rem; }
+
+        /* GUIDE CONTENT */
+        .guide-content { padding: 60px 0 80px; }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .guide-card {
+            background: var(--surface);
+            border: 1px solid rgba(195,199,206,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .guide-card:hover { transform: translateY(-4px); border-color: var(--muted); }
+
+        .guide-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .guide-card-icon {
+            width: 48px; height: 48px;
+            background: var(--muted);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .guide-card h2 { font-size: 1.2rem; font-weight: 700; color: var(--light); }
+
+        .steps { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+        .step {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            min-width: 28px; height: 28px;
+            background: var(--muted);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--light);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-text { font-size: 0.95rem; color: var(--silver); line-height: 1.6; }
+        .step-text strong { color: var(--light); }
+
+        .notes {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(195,199,206,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: var(--silver);
+            line-height: 1.5;
+        }
+
+        .note-dot {
+            width: 6px; height: 6px;
+            background: var(--muted);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .mobile-tip {
+            background: rgba(195,199,206,0.05);
+            border: 1px solid rgba(195,199,206,0.12);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.88rem;
+            color: var(--silver);
+            line-height: 1.5;
+        }
+
+        .mobile-tip i { color: var(--silver); margin-top: 2px; flex-shrink: 0; }
+
+        /* COMPARE TABLE */
+        .compare-section { margin-top: 20px; }
+        .compare-label { font-size: 0.85rem; font-weight: 700; color: var(--silver); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+        .compare-table { border-radius: 10px; overflow: hidden; border: 1px solid rgba(195,199,206,0.08); }
+        .compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 9px 14px; border-bottom: 1px solid rgba(195,199,206,0.06); font-size: 0.88rem; align-items: center; }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-header { background: var(--muted); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--light); }
+        .compare-row:not(.compare-header) { background: var(--bg); color: var(--silver); }
+        .compare-row:not(.compare-header):hover { background: rgba(195,199,206,0.03); }
+        .compare-row span:first-child { color: var(--light); font-weight: 500; }
+        .better { color: #86efac; font-weight: 600; }
+        .worse { color: #fca5a5; }
+        .compare-row small { font-size: 0.75rem; opacity: 0.8; }
+
+        /* FOOTER */
+        footer {
+            background: #0B0C0E;
+            border-top: 1px solid rgba(195,199,206,0.08);
+            padding: 50px 0 28px;
+        }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 36px; margin-bottom: 36px; }
+        .footer-col h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--light); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--muted); display: inline-block; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--light); }
+        .copyright { text-align: center; padding-top: 24px; border-top: 1px solid rgba(195,199,206,0.08); color: var(--muted); font-size: 0.85rem; }
+        @media (max-width: 768px) { 
+            .footer-grid { flex-direction: column; gap: 24px; } 
+            .guide-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+        @media (max-width: 480px) {
+            .page-header { padding: 80px 0 40px; }
+            .page-header h1 { font-size: 1.6rem; }
+            .page-header p { font-size: 0.9rem; }
+            .guide-card { padding: 20px 16px; border-radius: 12px; }
+            .guide-card h2 { font-size: 1.05rem; }
+            .step-num { min-width: 24px; height: 24px; font-size: 0.7rem; }
+            .step-text { font-size: 0.9rem; }
+            .compare-row { grid-template-columns: 2fr 1fr 1fr; padding: 8px 10px; font-size: 0.8rem; }
+            .compare-header { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><img src="logo.png" alt="BlackWhale SMP"></div>
+                    <span>BlackWhale SMP</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#server-info">Server Info</a>
+                    <a href="index.html#commands">Commands</a>
+                    <a href="index.html#shop">Shop</a>
+                    <a href="spawners.html">Spawners</a>
+                    <a href="guide.html" class="active">Special Items</a>
+                </div>
+                <div class="nav-buttons">
+                    <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
+                    <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>✨ Special Items</h1>
+            <p>Special items you can buy and use on BlackWhale SMP</p>
+        </div>
+    </div>
+
+    <div class="guide-content">
+        <div class="container">
+            <div class="guide-grid">
+
+                <!-- How to Buy -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <div class="guide-card-icon">🛒</div>
+                        <h2>How to Buy Items</h2>
+                    </div>
+                    <ol class="steps">
+                        <li class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-text">Open the shop in-game with <strong>/shop</strong></div>
+                        </li>
+                        <li class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-text">Navigate to the relevant category (e.g. <strong>Tools</strong> for pickaxes, <strong>Spawners</strong> page 2 for item spawners)</div>
+                        </li>
+                        <li class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-text">Click the item to purchase it</div>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- 3x3 Pickaxe -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <div class="guide-card-icon">⛏️</div>
+                        <h2>3x3 Pickaxes</h2>
+                    </div>
+                    <div class="compare-section">
+                        <div class="compare-label">Available in /shop → Tools</div>
+                        <div class="compare-table">
+                            <div class="compare-row compare-header"><span>Item</span><span>Buy Price</span><span>Sell</span></div>
+                            <div class="compare-row"><span>Diamond Pickaxe [3x3]</span><span class="better">$500</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Netherite Pickaxe [3x3]</span><span class="better">$3,920</span><span class="worse">Not sellable</span></div>
+                        </div>
+                    </div>
+                    <div class="notes">
+                        <div class="note"><div class="note-dot"></div><span>Both have the ability <strong>"Breaks 3x3 area"</strong></span></div>
+                        <div class="note"><div class="note-dot"></div><span>Works in <strong>all regions and worlds</strong></span></div>
+                        <div class="note"><div class="note-dot"></div><span>Cannot be sold back to the shop</span></div>
+                    </div>
+
+                </div>
+
+                <!-- Item Spawners -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <div class="guide-card-icon"><i class="fas fa-cube"></i></div>
+                        <h2>Item Spawners</h2>
+                    </div>
+                    <div class="compare-section">
+                        <div class="compare-label">Available in /shop → Spawners (page 2)</div>
+                        <div class="compare-table">
+                            <div class="compare-row compare-header"><span>Spawner</span><span>Buy Price</span><span>Sell</span></div>
+                            <div class="compare-row"><span>Coal Spawner</span><span class="better">$5,400,000</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Gold Ingot Spawner</span><span class="better">$32,400,000</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Diamond Spawner</span><span class="better">$90,000,000</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Emerald Spawner</span><span class="better">$54,000,000</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Totem of Undying Spawner</span><span class="better">$324,000,000</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Netherite Ingot Spawner</span><span class="better">$432,000,000</span><span class="worse">Not sellable</span></div>
+                            <div class="compare-row"><span>Nether Star Spawner</span><span class="better">$540,000,000</span><span class="worse">Not sellable</span></div>
+                        </div>
+                    </div>
+                    <div class="notes">
+                        <div class="note"><div class="note-dot"></div><span>Generate items instead of mobs automatically</span></div>
+                        <div class="note"><div class="note-dot"></div><span>Requires a player <strong>within 16 blocks</strong> to activate</span></div>
+                        <div class="note"><div class="note-dot"></div><span>Requires <strong>Silk Touch</strong> pickaxe (Iron, Gold, Diamond, or Netherite) to break and pick up</span></div>
+                        <div class="note"><div class="note-dot"></div><span>Cannot be sold back to the shop</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>BlackWhale SMP</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#server-info"><i class="fas fa-network-wired" aria-hidden="true"></i> Server Info</a></li>
+                        <li><a href="index.html#commands"><i class="fas fa-slash" aria-hidden="true"></i> Commands</a></li>
+                        <li><a href="index.html#shop"><i class="fas fa-coins" aria-hidden="true"></i> Shop Prices</a></li>
+                        <li><a href="spawners.html"><i class="fas fa-skull" aria-hidden="true"></i> Spawner Chart</a></li>
+                        <li><a href="guide.html"><i class="fas fa-book" aria-hidden="true"></i> Special Items</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
+                        <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Server IP</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-cube" aria-hidden="true"></i> Java: homes-dying.gl.joinmc.link</a></li>
+                        <li><a href="#"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: wanted-businesses.gl.at.ply.gg:3244</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">&copy; 2025 BlackWhale SMP. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    </script>
+</body>
+</html>
