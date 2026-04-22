@@ -879,11 +879,7 @@
                         <span></span> Server Online — Version 1.21.11
                     </div>
                     <h1>BlackWhale SMP</h1>
-                    <p class="subheading">An survival experience. Hard difficulty,economy, auction house, and a thriving community.
-                        
-                   
-
-                        Java & Bedrock welcome.</p>
+                    <p class="subheading">An survival experience. Hard difficulty,economy, auction house, and a thriving community.</p>
                     <div class="hero-cta">
                         <a href="#server-info" class="btn btn-primary">Get Server IP</a>
                         <a href="#commands" class="btn btn-secondary">View Commands</a>
@@ -916,8 +912,8 @@
                         <div class="server-stat">
                             <div class="server-stat-icon">🏠</div>
                             <div>
-                                <div class="server-stat-label">Max Homes</div>
-                                <div class="server-stat-value">10</div>
+                                <div class="server-stat-label">Free Homes</div>
+                                <div class="server-stat-value">3 free, $500 each after</div>
                             </div>
                         </div>
                         <div class="server-stat">
@@ -959,12 +955,7 @@
                     <div class="info-item">
                         <div class="info-icon">🌀</div>
                         <h3>Random Teleport</h3>
-                        <p>RTP range: <strong>500 – 15,000 blocks</strong> from spawn.<br>Cooldown: 10 minutes.<br>Disabled in: The End.</p>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">⏱️</div>
-                        <h3>Teleport Warmup</h3>
-                        <p>5 second warmup before teleporting. Stay still or the teleport cancels.</p>
+                        <p>RTP range: <strong>500 – 15,000 blocks</strong> from spawn.<br>Cost: <strong>$50 per use</strong>.<br>Cooldown: <strong>120 seconds</strong>.<br>Disabled in: The End.</p>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">📋</div>
@@ -975,6 +966,11 @@
                         <div class="info-icon">💰</div>
                         <h3>Economy</h3>
                         <p>Starting balance: <strong>$500</strong><br>Use /shop, /ah, and /sellall to grow your wealth.</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏠</div>
+                        <h3>Homes</h3>
+                        <p><strong>3 free homes</strong> to start.<br>Extra homes cost <strong>$500 each</strong> (max 10 total).<br>Making a home public costs <strong>$200</strong>.</p>
                     </div>
                 </div>
             </div>
@@ -991,8 +987,6 @@
                 <button class="tab-btn" data-tab="shop">🛒 Shop</button>
                 <button class="tab-btn" data-tab="auctions">🏷️ Auctions</button>
                 <button class="tab-btn" data-tab="teleport">📍 Teleport</button>
-                <button class="tab-btn" data-tab="player-tp">🤝 Player TP</button>
-                <button class="tab-btn" data-tab="homes">🏠 Homes</button>
                 <button class="tab-btn" data-tab="utility">⛏️ Utility</button>
             </div>
             <div id="commands-container"></div>
@@ -1044,6 +1038,7 @@
                     <ul class="footer-links">
                         <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
                         <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
+                        <li><a href="https://forms.gle/mxeg2DpXF7q8PiGa8" target="_blank"><i class="fas fa-shield-halved" aria-hidden="true"></i> Apply for Moderator</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1098,23 +1093,21 @@
         // Commands data
         const commandsData = {
             economy: [
-                { icon: '💰', name: '/balance or /bal', desc: 'Check your balance' },
-                { icon: '🏆', name: '/baltop or /balancetop', desc: 'View wealth leaderboard' },
+                { icon: '💰', name: '/balance, /bal', desc: 'Check your balance' },
+                { icon: '🏆', name: '/balancetop, /baltop', desc: 'View the wealth leaderboard' },
                 { icon: '💸', name: '/pay', desc: 'Pay another player' },
                 { icon: '🔕', name: '/paytoggle', desc: 'Toggle accepting payments' },
+                { icon: '📊', name: '/money, /xconomy, /xc', desc: 'Economy plugin commands' },
             ],
             shop: [
-                { icon: '🛒', name: '/shop or /market', desc: 'Open the server shop' },
-                { icon: '📦', name: '/sellall inventory', desc: 'Sell all eligible items in inventory' },
-                { icon: '🪙', name: '/sellall <item> [amount]', desc: 'Sell all of a specific item' },
-                { icon: '✋', name: '/sellall hand [amount]', desc: 'Sell item in hand' },
-                { icon: '🖥️', name: '/sellgui', desc: 'Open sell GUI' },
-                { icon: '🔍', name: '/shop search', desc: 'Search for items in shop' },
+                { icon: '🛒', name: '/shop, /market', desc: 'Open the server shop' },
+                { icon: '📦', name: '/sellall', desc: 'Sell all eligible items in your inventory' },
+                { icon: '🖥️', name: '/sellgui', desc: 'Open the sell GUI' },
             ],
             auctions: [
-                { icon: '🏷️', name: '/ah', desc: 'Open the Auction House' },
+                { icon: '🏷️', name: '/ah, /auction, /auctionhouse', desc: 'Open the Auction House' },
                 { icon: '📢', name: '/ah sell', desc: 'List item in hand for sale' },
-                { icon: '🔎', name: '/ah search', desc: 'Search by item name, type, enchant or seller' },
+                { icon: '🔎', name: '/ah search', desc: 'Search listings by name, type, enchant or seller' },
                 { icon: '📋', name: '/ah selling', desc: 'View & cancel your active listings' },
                 { icon: '✅', name: '/ah sold', desc: 'View your recently sold items' },
                 { icon: '⏰', name: '/ah expired', desc: 'View & claim back unsold/expired items' },
@@ -1123,31 +1116,21 @@
                 { icon: '❓', name: '/ah help', desc: 'Show all auction house commands' },
             ],
             teleport: [
-                { icon: '🏠', name: '/home', desc: 'Teleport to a home' },
-                { icon: '📌', name: '/sethome', desc: 'Set a home' },
-                { icon: '🗑️', name: '/delhome', desc: 'Delete a home' },
-                { icon: '📋', name: '/homes', desc: 'List your homes' },
-                { icon: '🌀', name: '/warp', desc: 'Use a warp' },
-                { icon: '📍', name: '/warps', desc: 'List all warps' },
-                { icon: '🏰', name: '/spawn or /lobby or /hub', desc: 'Go to spawn/lobby' },
-                { icon: '↩️', name: '/back', desc: 'Return to last location or death point' },
-                { icon: '🎲', name: '/rtp', desc: 'Random teleport (500–15,000 blocks, 10min cooldown)' },
-            ],
-            'player-tp': [
-                { icon: '➡️', name: '/tpa', desc: 'Request teleport to player' },
-                { icon: '⬅️', name: '/tpahere', desc: 'Request player to come to you' },
-                { icon: '✅', name: '/tpaccept', desc: 'Accept teleport request' },
-                { icon: '❌', name: '/tpdeny', desc: 'Deny teleport request' },
+                { icon: '🎲', name: '/rtp', desc: 'Random teleport (500–15,000 blocks, 120s cooldown, costs $50)' },
+                { icon: '↩️', name: '/back', desc: 'Return to your last location or death point' },
+                { icon: '🏠', name: '/home, /homes, /sethome, /delhome, /edithome', desc: 'Manage and teleport to your homes' },
+                { icon: '🏡', name: '/phome, /phomelist', desc: 'Teleport to or browse public homes' },
+                { icon: 'ℹ️', name: '/huskhomes', desc: 'Open the HuskHomes help menu' },
+                { icon: '➡️', name: '/tpa, /tpahere', desc: 'Request a teleport to or from another player' },
+                { icon: '✅', name: '/tpaccept', desc: 'Accept a teleport request' },
+                { icon: '❌', name: '/tpdeny', desc: 'Deny a teleport request' },
                 { icon: '🔕', name: '/tpignore', desc: 'Toggle ignoring teleport requests' },
-            ],
-            homes: [
-                { icon: '🏡', name: '/phome <player.home>', desc: 'Teleport to a player\'s public home' },
-                { icon: '📋', name: '/phomelist', desc: 'Browse all public homes' },
-                { icon: '🔒', name: '/edithome privacy', desc: 'Toggle your home public/private' },
+                { icon: '🌀', name: '/warp, /warps', desc: 'Use or list server warps' },
+                { icon: '🏰', name: '/spawn, /lobby, /hub, /l', desc: 'Teleport to spawn/lobby' },
             ],
             utility: [
-                { icon: '⛏️', name: '/veinminer or /vm', desc: 'Toggle veinminer on/off — Sneak + mine to vein mine connected ore blocks' },
-                { icon: '🏆', name: '/leaderboard or /lb', desc: 'View server leaderboards' },
+                { icon: '⛏️', name: '/veinminer, /vm', desc: 'Toggle veinminer — Sneak + mine to vein mine connected ore blocks' },
+                { icon: '💬', name: '/discord', desc: 'Get the Discord invite link' },
             ],
         };
 
@@ -1178,17 +1161,62 @@
         // Shop data
         const shopData = {
             'Ores': [
-                ['Diamond','80','20'],['Diamond Block','720','180'],['Diamond Ore','800','❌'],['Deepslate Diamond Ore','160','40'],
-                ['Emerald','40','25'],['Emerald Block','360','90'],['Emerald Ore','120','❌'],['Deepslate Emerald Ore','120','30'],
-                ['Netherite Ingot','3,000','750'],['Netherite Block','50,000','6,750'],['Netherite Scrap','700','175'],['Ancient Debris','600','150'],
-                ['Gold Ingot','60','15'],['Gold Block','540','135'],['Raw Gold','7','2'],['Raw Gold Block','63','16'],['Gold Ore','24','❌'],
-                ['Iron Ingot','5','1'],['Iron Block','45','11'],['Raw Iron','5','1'],['Raw Iron Block','45','11'],['Iron Ore','16','❌'],
-                ['Deepslate Iron Ore','16','4'],['Coal','4','2'],['Coal Block','36','9'],['Coal Ore','16','❌'],['Deepslate Coal Ore','16','4'],
-                ['Redstone','3','1'],['Redstone Block','27','7'],['Redstone Ore','16','❌'],['Deepslate Redstone Ore','16','4'],
-                ['Lapis Lazuli','6','2'],['Lapis Block','54','14'],['Lapis Ore','44','❌'],['Deepslate Lapis Ore','44','11'],
-                ['Quartz','8','2'],['Quartz Block','32','8'],['Nether Quartz Ore','24','❌'],['Amethyst Block','18','4'],
-                ['Copper Block','9','2'],['Copper Ingot','1','❌'],['Copper Ore','8','❌'],['Deepslate Copper Ore','12','3'],
-                ['Raw Copper','1','❌'],['Raw Copper Block','4','1'],['Nether Gold Ore','20','❌'],['Gold Nugget','1','❌'],['Iron Nugget','1','❌'],
+                ['Diamond','80','25'],['Diamond Block','720','225'],['Deepslate Diamond Ore','160','40'],
+                ['Emerald','40','7'],['Emerald Block','360','63'],['Deepslate Emerald Ore','120','30'],
+                ['Netherite Ingot','3,000','750'],['Netherite Block','27,000','6,750'],['Netherite Scrap','700','175'],['Ancient Debris','600','150'],
+                ['Gold Ingot','60','15'],['Gold Block','540','135'],['Raw Gold','16','2'],['Raw Gold Block','162','❌'],['Gold Ore','24','❌'],
+                ['Iron Ingot','5','1'],['Iron Block','36','9'],['Raw Iron','5','1'],['Raw Iron Block','36','9'],['Iron Ore','16','❌'],
+                ['Deepslate Iron Ore','16','4'],['Coal','4','2'],['Coal Block','36','18'],['Coal Ore','16','❌'],['Deepslate Coal Ore','16','4'],
+                ['Redstone','3','1'],['Redstone Block','27','9'],['Redstone Ore','16','❌'],['Deepslate Redstone Ore','16','4'],
+                ['Lapis Lazuli','6','2'],['Lapis Block','54','18'],['Lapis Ore','44','❌'],['Deepslate Lapis Ore','44','11'],
+                ['Quartz','8','2'],['Quartz Block','32','18'],['Nether Quartz Ore','24','❌'],['Amethyst Block','18','4'],
+                ['Copper Block','9','2'],['Copper Ingot','2','1'],['Copper Ore','8','❌'],['Deepslate Copper Ore','12','3'],
+                ['Raw Copper','2','1'],['Raw Copper Block','18','❌'],['Nether Gold Ore','20','❌'],['Gold Nugget','2','1'],['Iron Nugget','2','❌'],
+            ],
+            'Blocks': [
+                ['Bricks','76','15'],
+                ['Calcite','2','❌'],['Dripstone Block','2','1'],['Rooted Dirt','2','1'],
+                ['Andesite','2','1'],['Andesite Slab','2','1'],['Andesite Stairs','2','1'],
+                ['Polished Andesite','2','1'],['Polished Andesite Slab','2','1'],['Polished Andesite Stairs','2','1'],
+                ['Bamboo Block','2','1'],['Bamboo Mosaic','2','1'],['Bamboo Mosaic Slab','2','1'],['Bamboo Mosaic Stairs','2','1'],
+                ['Bamboo Planks','2','1'],['Bamboo Slab','2','1'],['Bamboo Stairs','2','1'],
+                ['Blackstone','2','1'],['Blackstone Slab','2','1'],['Blackstone Stairs','2','1'],
+                ['Polished Blackstone','2','1'],['Polished Blackstone Brick Slab','2','1'],['Polished Blackstone Brick Stairs','2','1'],
+                ['Polished Blackstone Bricks','2','1'],['Polished Blackstone Slab','2','1'],['Polished Blackstone Stairs','2','1'],
+                ['Basalt','2','1'],['Cobblestone','2','1'],['Cobblestone Slab','2','1'],['Cobblestone Stairs','2','1'],
+                ['Chiseled Copper','2','1'],['Exposed Chiseled Copper','2','1'],['Oxidized Chiseled Copper','2','1'],['Weathered Chiseled Copper','2','1'],
+                ['Waxed Cut Copper Slab','2','1'],['Waxed Exposed Cut Copper Slab','2','1'],['Waxed Oxidized Cut Copper Slab','2','1'],['Waxed Weathered Cut Copper Slab','2','1'],
+                ['Cobbled Deepslate','2','1'],['Cobbled Deepslate Slab','2','1'],['Cobbled Deepslate Stairs','2','1'],
+                ['Deepslate','2','1'],['Deepslate Tile Slab','2','1'],['Deepslate Tile Stairs','2','1'],['Deepslate Tiles','2','1'],
+                ['Deepslate Bricks','2','1'],['Deepslate Brick Slab','2','1'],['Deepslate Brick Stairs','2','1'],
+                ['Deepslate Brick Wall','2','1'],['Deepslate Tile Wall','2','1'],['Cobbled Deepslate Wall','2','1'],
+                ['Chiseled Deepslate','2','1'],['Polished Deepslate','2','1'],['Polished Deepslate Slab','2','1'],
+                ['Polished Deepslate Stairs','2','1'],['Polished Deepslate Wall','2','1'],
+                ['Cracked Deepslate Bricks','2','1'],['Cracked Deepslate Tiles','2','1'],
+                ['Diorite','2','1'],['Diorite Slab','2','1'],['Diorite Stairs','2','1'],
+                ['Polished Diorite','2','1'],['Polished Diorite Slab','2','1'],['Polished Diorite Stairs','2','1'],
+                ['Dirt','2','1'],['End Stone Brick Slab','2','❌'],['Glass Pane','2','❌'],
+                ['Granite','2','1'],['Granite Slab','2','1'],['Granite Stairs','2','1'],
+                ['Polished Granite','2','1'],['Polished Granite Slab','2','1'],['Polished Granite Stairs','2','1'],
+                ['Mud','2','1'],['Netherrack','2','1'],
+                ['Nether Brick Slab','2','1'],['Nether Brick Stairs','2','1'],['Nether Bricks','2','1'],
+                ['Stone','2','1'],['Stone Slab','2','1'],['Stone Stairs','2','1'],
+                ['Stone Brick Slab','2','1'],['Stone Brick Stairs','2','1'],['Stone Bricks','2','1'],['Mossy Stone Brick Slab','2','1'],
+                ['Chiseled Tuff','2','❌'],['Chiseled Tuff Bricks','2','❌'],['Polished Tuff','2','❌'],
+                ['Polished Tuff Slab','2','1'],['Polished Tuff Stairs','2','❌'],
+                ['Tuff','2','❌'],['Tuff Brick Slab','2','1'],['Tuff Brick Stairs','2','❌'],['Tuff Bricks','2','❌'],
+                ['Tuff Slab','2','1'],['Tuff Stairs','2','❌'],
+                ['Acacia Log','2','❌'],['Acacia Planks','2','1'],['Acacia Slab','2','1'],['Acacia Stairs','2','❌'],
+                ['Birch Log','2','❌'],['Birch Planks','2','1'],['Birch Slab','2','1'],['Birch Stairs','2','❌'],
+                ['Cherry Log','2','❌'],['Cherry Planks','2','1'],['Cherry Slab','2','1'],['Cherry Stairs','2','1'],
+                ['Crimson Planks','2','1'],['Crimson Slab','2','1'],['Crimson Stairs','2','1'],['Crimson Stem','2','❌'],
+                ['Dark Oak Log','2','❌'],['Dark Oak Planks','2','1'],['Dark Oak Slab','2','1'],['Dark Oak Stairs','2','❌'],
+                ['Jungle Log','2','❌'],['Jungle Planks','2','1'],['Jungle Slab','2','1'],['Jungle Stairs','2','❌'],
+                ['Mangrove Log','2','❌'],['Mangrove Planks','2','1'],['Mangrove Slab','2','1'],['Mangrove Stairs','2','1'],
+                ['Oak Log','2','❌'],['Oak Planks','2','1'],['Oak Slab','2','1'],['Oak Stairs','2','❌'],
+                ['Spruce Log','2','❌'],['Spruce Planks','2','1'],['Spruce Slab','2','1'],['Spruce Stairs','2','❌'],
+                ['Warped Planks','2','1'],['Warped Slab','2','1'],['Warped Stairs','2','1'],['Warped Stem','2','❌'],
+                ['Bamboo Door','2','1'],['Bamboo Fence','2','1'],
             ],
             'Mobs': [
                 ['Blaze Rod','8','2'],['Blaze Powder','4','1'],['Breeze Rod','24','6'],['Bone','3','1'],
@@ -1201,8 +1229,8 @@
                 ['Leather','20','5'],['Wheat','3','1'],['Carrot','3','1'],['Potato','3','1'],['Beetroot','3','1'],
                 ['Melon','6','4'],['Pumpkin','3','1'],['Nether Wart','3','1'],['Cocoa Beans','3','1'],['Chorus Fruit','3','1'],
                 ['Crimson Fungus','4','1'],['Warped Fungus','4','1'],['Beehive','20','5'],['Pitcher Pod','24','6'],
-                ['Torchflower Seeds','24','6'],['Bee Nest','❌','12'],['Bamboo','1','❌'],['Cactus','1','❌'],
-                ['Kelp','1','❌'],['Sugar Cane','1','❌'],['Egg','2','❌'],
+                ['Torchflower Seeds','24','6'],['Bee Nest','❌','12'],['Bamboo','2','1'],['Cactus','2','1'],
+                ['Kelp','2','1'],['Melon Slice','2','1'],['Sugar Cane','2','1'],['Wheat Seeds','2','1'],['Egg','2','❌'],
             ],
             'Food': [
                 ['Cooked Beef','6','2'],['Cooked Chicken','6','2'],['Cooked Porkchop','6','2'],['Cooked Mutton','6','2'],
@@ -1237,21 +1265,21 @@
                 ['Golden Horse Armor','800','200'],['Iron Horse Armor','400','100'],['Leather Horse Armor','100','25'],
             ],
             'Enchanting': [
-                ['Wind Burst III','6,000','1,500'],['Density V','2,500','625'],['Impaling V','2,000','500'],
-                ['Mending I','1,000','250'],['Blast Protection IV','1,200','300'],['Sharpness V','800','200'],
-                ['Efficiency V','800','200'],['Feather Falling IV','800','200'],['Fire Protection IV','800','200'],
-                ['Power V','800','200'],['Projectile Protection IV','800','200'],['Smite V','1,600','400'],
-                ['Bane of Arthropods V','1,600','400'],['Breach IV','1,600','400'],['Soul Speed III','900','225'],
-                ['Thorns III','720','180'],['Fortune III','600','150'],['Looting III','600','150'],
-                ['Luck of the Sea III','600','150'],['Lure III','600','150'],['Respiration III','600','150'],
-                ['Riptide III','600','150'],['Sweeping Edge III','600','150'],['Swift Sneak III','600','150'],
-                ['Depth Strider III','600','150'],['Silk Touch I','500','125'],['Piercing IV','400','100'],
-                ['Unbreaking III','360','90'],['Loyalty III','360','90'],['Quick Charge III','360','90'],
-                ['Fire Aspect II','280','70'],['Frost Walker II','280','70'],['Punch II','280','70'],
-                ['Knockback II','180','45'],['Protection IV','600','150'],['Channeling I','160','40'],
-                ['Binding Curse I','160','40'],['Infinity I','160','40'],['Multishot I','160','40'],
-                ['Vanishing Curse I','160','40'],['Flame I','120','30'],['Aqua Affinity I','120','30'],
-],
+                ['Wind Burst III','6,000','100'],['Density V','2,500','100'],['Impaling V','2,000','100'],
+                ['Mending I','1,000','100'],['Blast Protection IV','1,200','100'],['Sharpness V','800','100'],
+                ['Efficiency V','800','100'],['Feather Falling IV','800','100'],['Fire Protection IV','800','100'],
+                ['Power V','800','100'],['Projectile Protection IV','800','100'],['Smite V','1,600','100'],
+                ['Bane of Arthropods V','1,600','100'],['Breach IV','1,600','100'],['Soul Speed III','900','100'],
+                ['Thorns III','720','100'],['Fortune III','600','48'],['Looting III','600','48'],
+                ['Luck of the Sea III','600','48'],['Lure III','600','48'],['Respiration III','600','48'],
+                ['Riptide III','600','48'],['Sweeping Edge III','600','48'],['Swift Sneak III','600','48'],
+                ['Depth Strider III','600','48'],['Silk Touch I','500','40'],['Piercing IV','400','32'],
+                ['Unbreaking III','360','29'],['Loyalty III','360','29'],['Quick Charge III','360','29'],
+                ['Fire Aspect II','280','22'],['Frost Walker II','280','22'],['Punch II','280','22'],
+                ['Knockback II','180','15'],['Protection IV','600','48'],['Channeling I','160','13'],
+                ['Binding Curse I','160','13'],['Infinity I','160','13'],['Multishot I','160','13'],
+                ['Vanishing Curse I','160','13'],['Flame I','120','15'],['Aqua Affinity I','120','15'],
+            ],
             'Music': [
                 ['Music Disc 5','800','200'],['Music Disc Creator','80','20'],['Music Disc Creator Music Box','80','20'],
                 ['Music Disc Precipice','80','20'],['Music Disc Relic','80','20'],['All Other Discs','60','15'],['All Goat Horns','80','20'],
@@ -1265,6 +1293,7 @@
                 ['Light Weighted Pressure Plate','16','4'],['Heavy Weighted Pressure Plate','12','3'],
                 ['Powered Rail','8','2'],['Activator Rail','6','2'],['Detector Rail','6','2'],
                 ['Calibrated Sculk Sensor','16','4'],['Jukebox','56','14'],['Lightning Rod','3','1'],
+                ['Rail','2','1'],['All Buttons (12 types)','2','1'],['Bamboo Pressure Plate','2','1'],['Warped Pressure Plate','2','1'],
             ],
             'Dyes & Flowers': [
                 ['Brown Dye','6','2'],['Black Dye','4','1'],['Gray Dye','3','1'],['Lime Dye','4','1'],
@@ -1279,6 +1308,9 @@
                 ['All Froglights','5','1'],['Shroomlight','6','2'],['Copper Bulbs','5','1'],
                 ["Jack o'Lantern",'6','2'],['Chain','6','2'],['Spore Blossom','3','1'],
                 ['All Saplings/Leaves','2','❌'],['All Signs','1–2','❌'],['All Hanging Signs','2–3','1'],
+                ['Bamboo Sign','2','1'],['Glow Lichen','2','1'],['Pointed Dripstone','2','1'],
+                ['Allium','2','1'],['Dandelion','2','1'],['Rose Bush','2','1'],['White Tulip','2','1'],
+                ['Moss Carpet','2','1'],['Mushroom Stem','2','1'],['Hanging Roots','2','1'],['Torch','2','1'],
             ],
             'Transport': [
                 ['All Boats','4–5','1'],['All Chest Boats','12–14','3–4'],['Bamboo Raft','2','1'],
@@ -1300,6 +1332,9 @@
                 ['Dragon Egg','4,000','1,000'],['Dragon Head','❌','1,000'],['Wither Skeleton Skull','❌','250'],
                 ['Enchanted Golden Apple','❌','2,000'],['Vault','100,000','25,000'],
                 ['Trial Key','1,000','250'],['Ominous Trial Key','1,600','400'],['All Spawn Eggs','999,999,999','❌'],
+                ['Nether Brick','2','1'],['Nether Brick Fence','2','1'],['Nether Brick Wall','2','1'],
+                ['Paper','2','1'],['Stick','2','1'],['Sugar','2','1'],
+                ['Dried Kelp','2','1'],['Dried Kelp Block','2','1'],
             ],
         };
 
