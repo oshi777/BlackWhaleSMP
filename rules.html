@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules — BlackWhale SMP</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:      #0B0C0E;
+            --surface: #1E2126;
+            --muted:   #3A3F47;
+            --silver:  #C3C7CE;
+            --light:   #F8F8F9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--light); line-height: 1.6; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--surface); }
+        ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+        * { scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface); }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; }
+        header.scrolled { background: rgba(11,12,14,0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.4rem; color: var(--light); text-decoration: none; }
+        .logo-icon img { width: 40px; height: 40px; object-fit: contain; display: block; background: var(--muted); border-radius: 8px; padding: 4px; }
+        .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+        .nav-links a { color: var(--silver); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 5px 0; transition: color 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--silver); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--light); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .btn { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Inter', sans-serif; white-space: nowrap; }
+        .btn-primary { background: var(--muted); color: var(--light); }
+        .btn-primary:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-secondary { background: transparent; color: var(--light); border: 2px solid var(--muted); }
+        .btn-secondary:hover { border-color: var(--silver); background: rgba(195,199,206,0.08); transform: translateY(-2px); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        .page-header { padding: 110px 0 50px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(30,33,38,0.6) 0%, transparent 70%); }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 10px; }
+        .page-header p { color: var(--silver); font-size: 1rem; }
+
+        .doc-body { padding: 50px 0 80px; }
+
+        .notice { background: rgba(195,199,206,0.05); border: 1px solid rgba(195,199,206,0.1); border-left: 3px solid var(--muted); border-radius: 8px; padding: 16px 20px; margin-bottom: 40px; color: var(--silver); font-size: 0.9rem; }
+        .notice strong { color: var(--light); }
+
+        .rule-section { margin-bottom: 40px; }
+        .rule-section h2 { font-size: 1.15rem; font-weight: 700; color: var(--light); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(195,199,206,0.08); }
+        .rule-section h2 i { color: var(--silver); }
+
+        .rule-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .rule-list li { display: flex; align-items: flex-start; gap: 12px; background: var(--surface); border: 1px solid rgba(195,199,206,0.06); border-radius: 10px; padding: 12px 16px; font-size: 0.95rem; color: var(--silver); transition: border-color 0.2s; }
+        .rule-list li:hover { border-color: rgba(195,199,206,0.15); }
+        .rule-list li .rule-num { min-width: 24px; height: 24px; background: var(--muted); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--light); flex-shrink: 0; margin-top: 1px; }
+        .rule-list li strong { color: var(--light); }
+        .rule-list li .tag { font-size: 0.75rem; background: rgba(195,199,206,0.08); color: var(--muted); border-radius: 4px; padding: 2px 7px; margin-left: auto; flex-shrink: 0; align-self: center; }
+        .tag-ban { background: rgba(239,68,68,0.12); color: #fca5a5; }
+        .tag-mute { background: rgba(234,179,8,0.12); color: #fde68a; }
+        .tag-warn { background: rgba(74,222,128,0.12); color: #86efac; }
+
+        .punishment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 4px; }
+        .punishment-card { background: var(--surface); border: 1px solid rgba(195,199,206,0.06); border-radius: 10px; padding: 14px 16px; text-align: center; }
+        .punishment-card .p-icon { font-size: 1.4rem; margin-bottom: 8px; }
+        .punishment-card .p-title { font-size: 0.85rem; font-weight: 700; color: var(--light); margin-bottom: 4px; }
+        .punishment-card .p-desc { font-size: 0.8rem; color: var(--silver); }
+
+        footer { background: #0B0C0E; border-top: 1px solid rgba(195,199,206,0.08); padding: 50px 0 28px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 36px; margin-bottom: 36px; }
+        .footer-col h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--light); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--muted); display: inline-block; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--light); }
+        .copyright { text-align: center; padding-top: 24px; border-top: 1px solid rgba(195,199,206,0.08); color: var(--muted); font-size: 0.85rem; }
+        @media (max-width: 768px) { .footer-grid { flex-direction: column; gap: 24px; } .page-header h1 { font-size: 2rem; } .punishment-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="logo.png" alt="BlackWhale SMP"></div>
+                <span>BlackWhaleSMP</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#server-info">Server Info</a>
+                <a href="index.html#commands">Commands</a>
+                <a href="index.html#shop">Shop</a>
+                <a href="spawners.html">Spawners</a>
+                <a href="special-items.html">Special Items</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fa-solid fa-scale-balanced"></i> Server Rules</h1>
+            <p>Rules for playing on BlackWhale SMP — read before joining</p>
+        </div>
+    </div>
+
+    <div class="doc-body">
+        <div class="container">
+
+            <div class="notice">
+                <strong>Important:</strong> By joining BlackWhale SMP you agree to follow these rules. Ignorance of the rules is not an excuse. Rules apply in-game, on Discord, and in all community spaces.
+            </div>
+
+            <!-- GAMEPLAY -->
+            <div class="rule-section">
+                <h2><i class="fa-solid fa-gamepad"></i> Gameplay Rules</h2>
+                <ul class="rule-list">
+                    <li>
+                        <div class="rule-num">1</div>
+                        <div><strong>No hacking or cheating.</strong> Use of hacked clients, X-ray, fly hacks, auto-clickers, macros, or any software that gives an unfair advantage is strictly forbidden.</div>
+                        <span class="tag tag-ban">Permanent Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">2</div>
+                        <div><strong>No exploiting bugs or glitches.</strong> If you find a bug or unintended mechanic, report it to staff immediately. Exploiting it for personal gain will result in punishment.</div>
+                        <span class="tag tag-ban">Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">3</div>
+                        <div><strong>No griefing or stealing.</strong> Do not destroy, modify, or take from another player's builds or storage without their explicit permission.</div>
+                        <span class="tag tag-ban">Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">4</div>
+                        <div><strong>PvP requires mutual consent.</strong> You may only engage in PvP if both players have agreed to it. Attacking players without consent is not allowed.</div>
+                        <span class="tag tag-warn">Warning / Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">5</div>
+                        <div><strong>No combat logging.</strong> Logging out during an active PvP fight to avoid death is not allowed.</div>
+                        <span class="tag tag-warn">Warning / Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">6</div>
+                        <div><strong>Respect player builds.</strong> Do not build within 100 blocks of another player's base without permission. Do not create lag machines, excessive redstone clocks, or builds that intentionally harm server performance.</div>
+                        <span class="tag tag-warn">Warning / Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">7</div>
+                        <div><strong>No scamming.</strong> Deceiving other players in trades, auction house listings, or any in-game agreements is not allowed.</div>
+                        <span class="tag tag-ban">Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">8</div>
+                        <div><strong>No real-money trading.</strong> Exchanging in-game items or currency for real money outside of the server is strictly prohibited.</div>
+                        <span class="tag tag-ban">Permanent Ban</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CHAT -->
+            <div class="rule-section">
+                <h2><i class="fa-solid fa-comments"></i> Chat Rules</h2>
+                <ul class="rule-list">
+                    <li>
+                        <div class="rule-num">1</div>
+                        <div><strong>Be respectful.</strong> No harassment, insults, bullying, or toxic behavior toward any player or staff member.</div>
+                        <span class="tag tag-mute">Mute / Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">2</div>
+                        <div><strong>No hate speech.</strong> Racist, sexist, homophobic, or otherwise discriminatory language, slurs, or offensive content of any kind is strictly forbidden.</div>
+                        <span class="tag tag-ban">Permanent Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">3</div>
+                        <div><strong>Keep chat appropriate.</strong> No NSFW, explicit, or mature content in any chat channel.</div>
+                        <span class="tag tag-mute">Mute / Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">4</div>
+                        <div><strong>No spam.</strong> Do not flood chat with repeated messages, excessive caps, symbols, or emoji.</div>
+                        <span class="tag tag-mute">Mute</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">5</div>
+                        <div><strong>No begging.</strong> Do not repeatedly ask other players or staff for items, money, ranks, or special treatment.</div>
+                        <span class="tag tag-warn">Warning</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">6</div>
+                        <div><strong>No advertising.</strong> Do not promote other servers, services, or external links without prior staff approval.</div>
+                        <span class="tag tag-mute">Mute / Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">7</div>
+                        <div><strong>No unnecessary drama.</strong> Do not start or escalate arguments, spread rumors, or stir conflict between players.</div>
+                        <span class="tag tag-warn">Warning / Mute</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- STAFF -->
+            <div class="rule-section">
+                <h2><i class="fa-solid fa-shield-halved"></i> Staff & Community</h2>
+                <ul class="rule-list">
+                    <li>
+                        <div class="rule-num">1</div>
+                        <div><strong>Respect staff decisions.</strong> Staff decisions are final. If you disagree, raise it privately with an admin — do not argue in public.</div>
+                        <span class="tag tag-warn">Warning / Mute</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">2</div>
+                        <div><strong>No impersonation.</strong> Do not pretend to be a staff member or another player.</div>
+                        <span class="tag tag-ban">Ban</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">3</div>
+                        <div><strong>Staff will never ask for your password.</strong> If anyone claiming to be staff asks for your Minecraft account credentials, report it immediately.</div>
+                        <span class="tag tag-warn">Report</span>
+                    </li>
+                    <li>
+                        <div class="rule-num">4</div>
+                        <div><strong>Report issues properly.</strong> Use Discord or contact staff directly to report bugs, rule violations, or player disputes. Do not handle it yourself.</div>
+                        <span class="tag tag-warn">Info</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PUNISHMENTS -->
+            <div class="rule-section">
+                <h2><i class="fa-solid fa-gavel"></i> Punishments</h2>
+                <p style="color: var(--silver); font-size: 0.95rem; margin-bottom: 16px;">Punishments are applied at staff discretion based on severity and history. Repeated offences result in harsher punishments.</p>
+                <div class="punishment-grid">
+                    <div class="punishment-card">
+                        <div class="p-icon">⚠️</div>
+                        <div class="p-title">Warning</div>
+                        <div class="p-desc">Minor first offences</div>
+                    </div>
+                    <div class="punishment-card">
+                        <div class="p-icon">🔇</div>
+                        <div class="p-title">Mute</div>
+                        <div class="p-desc">Chat-related violations</div>
+                    </div>
+                    <div class="punishment-card">
+                        <div class="p-icon">⏱️</div>
+                        <div class="p-title">Temporary Ban</div>
+                        <div class="p-desc">Repeated or moderate violations</div>
+                    </div>
+                    <div class="punishment-card">
+                        <div class="p-icon">🚫</div>
+                        <div class="p-title">Permanent Ban</div>
+                        <div class="p-desc">Severe violations</div>
+                    </div>
+                </div>
+                <div class="notice" style="margin-top: 20px; margin-bottom: 0;">
+                    To appeal a punishment, contact staff on <a href="https://discord.gg/MxjKHbhrRq" target="_blank" style="color: var(--silver);">Discord</a> or at <a href="mailto:blackwhalesmp@gmail.com" style="color: var(--silver);">blackwhalesmp@gmail.com</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>BlackWhale SMP</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#server-info"><i class="fas fa-network-wired" aria-hidden="true"></i> Server Info</a></li>
+                        <li><a href="index.html#commands"><i class="fas fa-slash" aria-hidden="true"></i> Commands</a></li>
+                        <li><a href="index.html#shop"><i class="fas fa-coins" aria-hidden="true"></i> Shop Prices</a></li>
+                        <li><a href="spawners.html"><i class="fas fa-skull" aria-hidden="true"></i> Spawners</a></li>
+                        <li><a href="special-items.html"><i class="fas fa-book" aria-hidden="true"></i> Special Items</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
+                        <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
+                        <li><a href="https://forms.gle/mxeg2DpXF7q8PiGa8" target="_blank"><i class="fas fa-shield-halved" aria-hidden="true"></i> Apply for Moderator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="rules.html"><i class="fas fa-scale-balanced" aria-hidden="true"></i> Rules</a></li>
+                        <li><a href="terms-of-service.html"><i class="fas fa-file-contract" aria-hidden="true"></i> Terms of Service</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-shield-halved" aria-hidden="true"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Server IP</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-cube" aria-hidden="true"></i> Java: homes-dying.gl.joinmc.link</a></li>
+                        <li><a href="#"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: wanted-businesses.gl.at.ply.gg:3244</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">&copy; 2026 BlackWhale SMP. All rights reserved.<br><span style="font-size:0.75rem;">NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT. Minecraft is a trademark of Mojang AB.</span></div>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    </script>
+</body>
+</html>
