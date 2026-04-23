@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — BlackWhale SMP</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:      #0B0C0E;
+            --surface: #1E2126;
+            --muted:   #3A3F47;
+            --silver:  #C3C7CE;
+            --light:   #F8F8F9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--light); line-height: 1.6; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--surface); }
+        ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+        * { scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface); }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; }
+        header.scrolled { background: rgba(11,12,14,0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.4rem; color: var(--light); text-decoration: none; }
+        .logo-icon img { width: 40px; height: 40px; object-fit: contain; display: block; background: var(--muted); border-radius: 8px; padding: 4px; }
+        .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+        .nav-links a { color: var(--silver); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 5px 0; transition: color 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--silver); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--light); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .btn { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Inter', sans-serif; white-space: nowrap; }
+        .btn-primary { background: var(--muted); color: var(--light); }
+        .btn-primary:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-secondary { background: transparent; color: var(--light); border: 2px solid var(--muted); }
+        .btn-secondary:hover { border-color: var(--silver); background: rgba(195,199,206,0.08); transform: translateY(-2px); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        .page-header { padding: 110px 0 50px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(30,33,38,0.6) 0%, transparent 70%); }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 10px; }
+        .page-header p { color: var(--silver); font-size: 1rem; }
+
+        .doc-body { padding: 50px 0 80px; }
+        .last-updated { color: var(--muted); font-size: 0.85rem; margin-bottom: 40px; }
+
+        .doc-section { margin-bottom: 40px; }
+        .doc-section h2 { font-size: 1.15rem; font-weight: 700; color: var(--light); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(195,199,206,0.08); }
+        .doc-section h2 i { color: var(--silver); }
+        .doc-section p { color: var(--silver); font-size: 0.95rem; margin-bottom: 10px; }
+        .doc-section ul { list-style: none; margin: 10px 0; }
+        .doc-section ul li { color: var(--silver); font-size: 0.95rem; padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; }
+        .doc-section ul li::before { content: "→"; color: var(--muted); flex-shrink: 0; }
+        .doc-section ul li strong { color: var(--light); }
+
+        .notice { background: rgba(195,199,206,0.05); border: 1px solid rgba(195,199,206,0.1); border-left: 3px solid var(--muted); border-radius: 8px; padding: 16px 20px; margin-bottom: 40px; color: var(--silver); font-size: 0.9rem; }
+
+        footer { background: #0B0C0E; border-top: 1px solid rgba(195,199,206,0.08); padding: 50px 0 28px; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 36px; margin-bottom: 36px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 20px; }
+        .footer-col h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--light); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--muted); display: inline-block; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--light); }
+        .copyright { text-align: center; padding-top: 24px; border-top: 1px solid rgba(195,199,206,0.08); color: var(--muted); font-size: 0.85rem; max-width: 1200px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+        @media (max-width: 768px) { .footer-grid { flex-direction: column; gap: 24px; } .page-header h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="logo.png" alt="BlackWhale SMP"></div>
+                <span>BlackWhaleSMP</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#server-info">Server Info</a>
+                <a href="index.html#commands">Commands</a>
+                <a href="index.html#shop">Shop</a>
+                <a href="spawners.html">Spawners</a>
+                <a href="special-items.html">Special Items</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fa-solid fa-file-contract"></i> Terms of Service</h1>
+            <p>Rules and conditions for playing on BlackWhale SMP</p>
+        </div>
+    </div>
+
+    <div class="doc-body">
+        <div class="container">
+            <p class="last-updated"><i class="fa-regular fa-calendar"></i> Last updated: April 2026</p>
+
+            <div class="notice">
+                By joining and playing on BlackWhale SMP, you agree to these Terms of Service. Failure to comply may result in warnings, temporary bans, or permanent removal from the server.
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-circle-info"></i> 1. General</h2>
+                <p>BlackWhale SMP is a private Minecraft server. Access is a privilege, not a right. The server administration reserves the right to modify these terms at any time. Continued play after changes constitutes acceptance.</p>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-user-check"></i> 2. Eligibility & Access</h2>
+                <ul>
+                    <li>You must own a legitimate copy of Minecraft (Java or Bedrock).</li>
+                    <li>You must submit your in-game username in <strong>#usernames</strong> on Discord to be whitelisted.</li>
+                    <li>Sharing your whitelist slot or account with others is not permitted.</li>
+                    <li>Alt accounts must be disclosed to staff before use.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-ban"></i> 3. Prohibited Conduct</h2>
+                <p>The following are strictly forbidden and will result in immediate punishment:</p>
+                <ul>
+                    <li><strong>Hacking / Cheating:</strong> Use of hacked clients, X-ray, auto-clickers, macros, or any unfair advantage.</li>
+                    <li><strong>Griefing:</strong> Destroying, stealing from, or sabotaging another player's builds or property.</li>
+                    <li><strong>Exploiting:</strong> Abusing bugs, duplication glitches, or unintended game mechanics for personal gain.</li>
+                    <li><strong>Harassment:</strong> Targeting, bullying, threatening, or repeatedly disturbing other players.</li>
+                    <li><strong>Hate Speech:</strong> Racist, sexist, homophobic, or otherwise discriminatory language in any form.</li>
+                    <li><strong>Scamming:</strong> Deceiving other players in trades, auctions, or agreements.</li>
+                    <li><strong>Spam:</strong> Flooding chat, commands, or Discord channels with repetitive messages.</li>
+                    <li><strong>Impersonation:</strong> Pretending to be a staff member or another player.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-comments"></i> 4. Chat & Communication</h2>
+                <ul>
+                    <li>Keep chat respectful and in English (or the language of the channel).</li>
+                    <li>No advertising other servers, services, or external links without staff approval.</li>
+                    <li>Excessive caps, symbols, or emoji spam is not allowed.</li>
+                    <li>Discussions of illegal activities are strictly prohibited.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-cubes"></i> 5. Builds & World</h2>
+                <ul>
+                    <li>Do not build within <strong>100 blocks</strong> of another player's base without their permission.</li>
+                    <li>Lag machines, excessive redstone clocks, or builds that intentionally degrade server performance are prohibited.</li>
+                    <li>Inappropriate builds (offensive structures, symbols, etc.) will be removed without warning.</li>
+                    <li>Abandoned builds may be removed by staff after extended inactivity.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-coins"></i> 6. Economy</h2>
+                <ul>
+                    <li>Real-money trading (RMT), exchanging in-game items or currency for real money, is strictly prohibited.</li>
+                    <li>Auction house and shop listings must be fair and not intentionally misleading.</li>
+                    <li>Staff will not reverse economy transactions resulting from player error.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-gavel"></i> 7. Enforcement & Punishments</h2>
+                <p>Punishments are applied at staff discretion based on severity and history:</p>
+                <ul>
+                    <li><strong>Verbal warning:</strong> minor first offences.</li>
+                    <li><strong>Mute:</strong> chat-related violations.</li>
+                    <li><strong>Temporary ban:</strong> repeated or moderate violations.</li>
+                    <li><strong>Permanent ban:</strong> severe violations (hacking, hate speech, major griefing).</li>
+                </ul>
+                <p>To appeal a punishment, contact staff via Discord or email <a href="mailto:blackwhalesmp@gmail.com" style="color: var(--silver);">blackwhalesmp@gmail.com</a></p>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-shield-halved"></i> 8. Staff Authority</h2>
+                <ul>
+                    <li>Staff decisions are final. Arguing with or disrespecting staff may result in punishment.</li>
+                    <li>If you believe a staff member acted unfairly, report it privately to an admin.</li>
+                    <li>Staff will never ask for your Minecraft account password.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> 9. Disclaimer</h2>
+                <p>BlackWhale SMP is not affiliated with Mojang Studios or Microsoft. We provide no guarantees of uptime, data retention, or continuity of service. The server may be shut down or reset at any time without prior notice.</p>
+            </div>
+
+            <div class="doc-section">
+                <h2><i class="fa-solid fa-envelope"></i> 10. Contact</h2>
+                <p>Questions about these terms? Reach us on <a href="https://discord.gg/MxjKHbhrRq" target="_blank" style="color: var(--silver);">Discord</a> or at <a href="mailto:blackwhalesmp@gmail.com" style="color: var(--silver);">blackwhalesmp@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>BlackWhale SMP</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#server-info"><i class="fas fa-network-wired" aria-hidden="true"></i> Server Info</a></li>
+                    <li><a href="index.html#commands"><i class="fas fa-slash" aria-hidden="true"></i> Commands</a></li>
+                    <li><a href="index.html#shop"><i class="fas fa-coins" aria-hidden="true"></i> Shop Prices</a></li>
+                    <li><a href="spawners.html"><i class="fas fa-skull" aria-hidden="true"></i> Spawners</a></li>
+                    <li><a href="special-items.html"><i class="fas fa-book" aria-hidden="true"></i> Special Items</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
+                    <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
+                    <li><a href="https://forms.gle/mxeg2DpXF7q8PiGa8" target="_blank"><i class="fas fa-shield-halved" aria-hidden="true"></i> Apply for Moderator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="terms-of-service.html"><i class="fas fa-file-contract" aria-hidden="true"></i> Terms of Service</a></li>
+                    <li><a href="privacy-policy.html"><i class="fas fa-shield-halved" aria-hidden="true"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Server IP</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-cube" aria-hidden="true"></i> Java: homes-dying.gl.joinmc.link</a></li>
+                    <li><a href="#"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: wanted-businesses.gl.at.ply.gg:3244</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 BlackWhale SMP. All rights reserved.<br><span style="font-size:0.75rem;">NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT. Minecraft is a trademark of Mojang AB.</span></div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    </script>
+</body>
+</html>
