@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /google7fb815dd6c8685dc.html
+
+Sitemap: https://blackwhalesmp.netlify.app/sitemap.xml
