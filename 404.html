@@ -20,50 +20,132 @@
             --light:   #F8F8F9;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--light); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--light); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: var(--surface); }
         ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+        * { scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface); }
 
-        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.4rem; color: var(--light); text-decoration: none; margin-bottom: 48px; }
-        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; }
+        header.scrolled { background: rgba(11,12,14,0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.4rem; color: var(--light); text-decoration: none; }
         .logo-icon img { width: 40px; height: 40px; object-fit: contain; display: block; background: var(--muted); border-radius: 8px; padding: 4px; }
+        .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+        .nav-links a { color: var(--silver); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 5px 0; transition: color 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--silver); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--light); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .btn { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Inter', sans-serif; white-space: nowrap; }
+        .btn-primary { background: var(--muted); color: var(--light); }
+        .btn-primary:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-secondary { background: transparent; color: var(--light); border: 2px solid var(--muted); }
+        .btn-secondary:hover { border-color: var(--silver); background: rgba(195,199,206,0.08); transform: translateY(-2px); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
 
+        .error-section { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 20px 80px; }
         .error-code { font-size: 8rem; font-weight: 800; line-height: 1; background: linear-gradient(135deg, var(--light) 0%, var(--muted) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
         .error-title { font-size: 1.6rem; font-weight: 700; color: var(--light); margin-bottom: 12px; }
         .error-sub { color: var(--silver); font-size: 1rem; margin-bottom: 40px; max-width: 420px; }
-
         .nav-cards { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 40px; }
         .nav-card { background: var(--surface); border: 1px solid rgba(195,199,206,0.1); border-radius: 12px; padding: 16px 22px; text-decoration: none; color: var(--silver); font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 10px; transition: all 0.3s; }
         .nav-card:hover { border-color: var(--muted); color: var(--light); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-
-        .btn { padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-block; transition: all 0.3s; background: var(--muted); color: var(--light); border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
-        .btn:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-
         @media (max-width: 480px) { .error-code { font-size: 5rem; } .error-title { font-size: 1.3rem; } .nav-cards { flex-direction: column; align-items: stretch; } }
+
+        footer { background: #0B0C0E; border-top: 1px solid rgba(195,199,206,0.08); padding: 50px 0 28px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 36px; margin-bottom: 36px; }
+        .footer-col h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--light); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--muted); display: inline-block; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-links a { color: var(--silver); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--light); }
+        .copyright { text-align: center; padding-top: 24px; border-top: 1px solid rgba(195,199,206,0.08); color: var(--muted); font-size: 0.85rem; }
+        @media (max-width: 768px) { .footer-grid { flex-direction: column; gap: 24px; } }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="logo">
-        <div class="logo-icon"><img src="logo.png" alt="BlackWhale SMP"></div>
-        <span>BlackWhale SMP</span>
-    </a>
+    <header id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="logo.png" alt="BlackWhale SMP"></div>
+                <span>BlackWhaleSMP</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#server-info">Server Info</a>
+                <a href="index.html#commands">Commands</a>
+                <a href="index.html#shop">Shop</a>
+                <a href="spawners.html">Spawners</a>
+                <a href="special-items.html">Special Items</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+                <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="error-code">404</div>
-    <div class="error-title">Page Not Found</div>
-    <p class="error-sub">Looks like you got lost. This page doesn't exist — here's where you can go instead:</p>
-
-    <div class="nav-cards">
-        <a href="index.html" class="nav-card"><i class="fas fa-house"></i> Home</a>
-        <a href="index.html#server-info" class="nav-card"><i class="fas fa-network-wired"></i> Server Info</a>
-        <a href="index.html#commands" class="nav-card"><i class="fas fa-slash"></i> Commands</a>
-        <a href="index.html#shop" class="nav-card"><i class="fas fa-coins"></i> Shop Prices</a>
-        <a href="spawners.html" class="nav-card"><i class="fas fa-skull"></i> Spawners</a>
-        <a href="special-items.html" class="nav-card"><i class="fas fa-book"></i> Special Items</a>
+    <div class="error-section">
+        <div class="error-code">404</div>
+        <div class="error-title">Page Not Found</div>
+        <p class="error-sub">Looks like you got lost. This page doesn't exist — here's where you can go instead:</p>
+        <div class="nav-cards">
+            <a href="index.html" class="nav-card"><i class="fas fa-house"></i> Home</a>
+            <a href="index.html#server-info" class="nav-card"><i class="fas fa-network-wired"></i> Server Info</a>
+            <a href="index.html#commands" class="nav-card"><i class="fas fa-slash"></i> Commands</a>
+            <a href="index.html#shop" class="nav-card"><i class="fas fa-coins"></i> Shop Prices</a>
+            <a href="spawners.html" class="nav-card"><i class="fas fa-skull"></i> Spawners</a>
+            <a href="special-items.html" class="nav-card"><i class="fas fa-book"></i> Special Items</a>
+        </div>
+        <a href="index.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
 
-    <a href="index.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>BlackWhale SMP</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#server-info"><i class="fas fa-network-wired" aria-hidden="true"></i> Server Info</a></li>
+                        <li><a href="index.html#commands"><i class="fas fa-slash" aria-hidden="true"></i> Commands</a></li>
+                        <li><a href="index.html#shop"><i class="fas fa-coins" aria-hidden="true"></i> Shop Prices</a></li>
+                        <li><a href="spawners.html"><i class="fas fa-skull" aria-hidden="true"></i> Spawners</a></li>
+                        <li><a href="special-items.html"><i class="fas fa-book" aria-hidden="true"></i> Special Items</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
+                        <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
+                        <li><a href="https://forms.gle/mxeg2DpXF7q8PiGa8" target="_blank"><i class="fas fa-shield-halved" aria-hidden="true"></i> Apply for Moderator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="rules.html"><i class="fas fa-scale-balanced" aria-hidden="true"></i> Rules</a></li>
+                        <li><a href="terms-of-service.html"><i class="fas fa-file-contract" aria-hidden="true"></i> Terms of Service</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-shield-halved" aria-hidden="true"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Server IP</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-cube" aria-hidden="true"></i> Java: homes-dying.gl.joinmc.link</a></li>
+                        <li><a href="#"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: wanted-businesses.gl.at.ply.gg:3244</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">&copy; 2026 BlackWhale SMP. All rights reserved.<br><span style="font-size:0.75rem;">NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT. Minecraft is a trademark of Mojang AB.</span></div>
+        </div>
+    </footer>
 
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    </script>
 </body>
 </html>
