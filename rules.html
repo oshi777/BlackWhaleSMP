@@ -71,7 +71,11 @@
 
         .punishment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 4px; }
         .punishment-card { background: var(--surface); border: 1px solid rgba(195,199,206,0.06); border-radius: 10px; padding: 14px 16px; text-align: center; }
-        .punishment-card .p-icon { font-size: 1.4rem; margin-bottom: 8px; }
+        .punishment-card .p-icon { font-size: 1.6rem; margin-bottom: 8px; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+        .punishment-card .p-icon.icon-warn  { background: rgba(234,179,8,0.12);  color: #fde68a; }
+        .punishment-card .p-icon.icon-mute  { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+        .punishment-card .p-icon.icon-temp  { background: rgba(249,115,22,0.12); color: #fdba74; }
+        .punishment-card .p-icon.icon-perm  { background: rgba(239,68,68,0.12);  color: #fca5a5; }
         .punishment-card .p-title { font-size: 0.85rem; font-weight: 700; color: var(--light); margin-bottom: 4px; }
         .punishment-card .p-desc { font-size: 0.8rem; color: var(--silver); }
 
@@ -273,22 +277,22 @@
                 <p style="color: var(--silver); font-size: 0.95rem; margin-bottom: 16px;">Punishments are applied at staff discretion based on severity and history. Repeated offences result in harsher punishments.</p>
                 <div class="punishment-grid">
                     <div class="punishment-card">
-                        <div class="p-icon">âš ï¸</div>
+                        <div class="p-icon icon-warn"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         <div class="p-title">Warning</div>
                         <div class="p-desc">Minor first offences</div>
                     </div>
                     <div class="punishment-card">
-                        <div class="p-icon">ðŸ”‡</div>
+                        <div class="p-icon icon-mute"><i class="fa-solid fa-comment-slash"></i></div>
                         <div class="p-title">Mute</div>
                         <div class="p-desc">Chat-related violations</div>
                     </div>
                     <div class="punishment-card">
-                        <div class="p-icon">â±ï¸</div>
+                        <div class="p-icon icon-temp"><i class="fa-solid fa-clock-rotate-left"></i></div>
                         <div class="p-title">Temporary Ban</div>
                         <div class="p-desc">Repeated or moderate violations</div>
                     </div>
                     <div class="punishment-card">
-                        <div class="p-icon">ðŸš«</div>
+                        <div class="p-icon icon-perm"><i class="fa-solid fa-skull-crossbones"></i></div>
                         <div class="p-title">Permanent Ban</div>
                         <div class="p-desc">Severe violations</div>
                     </div>

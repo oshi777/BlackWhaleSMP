@@ -54,7 +54,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
-        /* â”€â”€ HEADER â”€â”€ */
+        /* == HEADER == */
         header {
             position: fixed;
             top: 0; left: 0;
@@ -158,7 +158,7 @@
             transform: translateY(-2px);
         }
 
-        /* â”€â”€ HERO â”€â”€ */
+        /* == HERO == */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -267,7 +267,7 @@
         .server-stat-label { font-size: 0.82rem; color: var(--silver); }
         .server-stat-value { font-size: 0.92rem; font-weight: 600; color: var(--light); }
 
-        /* â”€â”€ SECTION TITLE â”€â”€ */
+        /* == SECTION TITLE == */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -293,7 +293,7 @@
             margin: 12px auto 48px;
         }
 
-        /* â”€â”€ SCROLL TOP â”€â”€ */
+        /* == SCROLL TOP == */
         .scroll-top {
             position: fixed;
             bottom: 24px; right: 24px;
@@ -313,7 +313,7 @@
         .scroll-top.visible { opacity: 1; visibility: visible; }
         .scroll-top:hover { background: var(--silver); color: var(--bg); transform: translateY(-3px); }
 
-        /* â”€â”€ HAMBURGER â”€â”€ */
+        /* == HAMBURGER == */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -360,7 +360,7 @@
         .mobile-menu .mobile-menu-btns { display: flex; flex-direction: column; gap: 12px; width: 200px; }
         .mobile-menu .mobile-menu-btns .btn { width: 100%; text-align: center; }
 
-        /* â”€â”€ RESPONSIVE â”€â”€ */
+        /* == RESPONSIVE == */
         @media (max-width: 992px) {
             .hero-content { flex-direction: column; text-align: center; }
             .hero-text { display: flex; flex-direction: column; align-items: center; }
@@ -408,7 +408,7 @@
             .search-bar { max-width: 100%; }
         }
 
-        /* â”€â”€ SERVER INFO â”€â”€ */
+        /* == SERVER INFO == */
         .server-info-section {
             padding: 90px 0;
             border-top: 2px solid rgba(195,199,206,0.2);
@@ -574,7 +574,7 @@
         .copy-btn:hover { background: var(--silver); color: var(--bg); }
         .copy-btn.copied { background: #4ade80; color: #0B0C0E; border-color: #4ade80; }
 
-        /* â”€â”€ COMMANDS â”€â”€ */
+        /* == COMMANDS == */
         .commands-section {
             padding: 90px 0;
             background: var(--surface);
@@ -686,7 +686,7 @@
             .compare-row { grid-template-columns: 1.5fr 1fr 1fr; padding: 8px 10px; font-size: 0.8rem; }
         }
 
-        /* â”€â”€ SHOP â”€â”€ */
+        /* == SHOP == */
         .shop-section { 
             padding: 90px 0; 
             background: var(--surface); 
@@ -851,7 +851,7 @@
             overflow-y: auto;
         }
 
-        /* â”€â”€ FOOTER â”€â”€ */
+        /* == FOOTER == */
         footer {
             background: #0B0C0E;
             border-top: 1px solid rgba(195,199,206,0.08);
@@ -904,7 +904,7 @@
             .footer-grid { flex-direction: column; gap: 24px; }
         }
 
-        /* â”€â”€ FA ICON STYLE â”€â”€ */
+        /* == FA ICON STYLE == */
         .guide-card-header i,
         .guide-card-content i,
         .compare-card-header i,
@@ -973,7 +973,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="hero-badge">
-                        <span></span> Server Online â€” Version 1.21.11
+                        <span></span> Server Online — Version 1.21.11
                     </div>
                     <h1>BlackWhaleSMP</h1>
                     <p class="subheading">An survival experience. Hard difficulty,economy, auction house, and a thriving community.</p>
@@ -1044,7 +1044,7 @@
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-dice"></i></div>
                         <h3>Random Teleport</h3>
-                        <p>RTP range: <strong>500 â€“ 15,000 blocks</strong> from spawn.<br>Cost: <strong>$50 per use</strong>.<br>Cooldown: <strong>120 seconds</strong>.<br>Disabled in: The End.</p>
+                        <p>RTP range: <strong>500 – 15,000 blocks</strong> from spawn.<br>Cost: <strong>$50 per use</strong>.<br>Cooldown: <strong>120 seconds</strong>.<br>Disabled in: The End.</p>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-list-check"></i></div>
@@ -1228,7 +1228,7 @@ function copyIP(btn, text) {
                 { icon: '<i class="fa-solid fa-circle-question"></i>', name: '/ah help', desc: 'Show all auction house commands' },
             ],
             teleport: [
-                { icon: '<i class="fa-solid fa-dice"></i>', name: '/rtp', desc: 'Random teleport (500â€“15,000 blocks, 120s cooldown, costs $50)' },
+                { icon: '<i class="fa-solid fa-dice"></i>', name: '/rtp', desc: 'Random teleport (500–15,000 blocks, 120s cooldown, costs $50)' },
                 { icon: '<i class="fa-solid fa-rotate-left"></i>', name: '/back', desc: 'Return to your last location or death point' },
                 { icon: '<i class="fa-solid fa-house"></i>', name: '/home, /homes, /sethome, /delhome, /edithome', desc: 'Manage and teleport to your homes' },
                 { icon: '<i class="fa-solid fa-house"></i>', name: '/phome, /phomelist', desc: 'Teleport to or browse public homes' },
