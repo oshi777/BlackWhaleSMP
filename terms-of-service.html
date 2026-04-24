@@ -45,13 +45,19 @@
         .btn-secondary { background: transparent; color: var(--light); border: 2px solid var(--muted); }
         .btn-secondary:hover { border-color: var(--silver); background: rgba(195,199,206,0.08); transform: translateY(-2px); }
         @media (max-width: 768px) { .nav-links { display: none; } }
-
-        .page-header { padding: 110px 0 50px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(30,33,38,0.6) 0%, transparent 70%); }
-        .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 10px; }
-        .page-header p { color: var(--silver); font-size: 1rem; }
-
-        .doc-body { padding: 50px 0 80px; }
-        .last-updated { color: var(--muted); font-size: 0.85rem; margin-bottom: 40px; }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+        .hamburger span { display:block; width:24px; height:2px; background:var(--light); border-radius:2px; transition:all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity:0; }
+        .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+        .mobile-menu { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11,12,14,0.98); z-index:999; flex-direction:column; align-items:center; justify-content:center; gap:32px; }
+        .mobile-menu.open { display:flex; }
+        .mobile-menu a { color:var(--light); text-decoration:none; font-size:1.4rem; font-weight:600; transition:color 0.2s; }
+        .mobile-menu a:hover { color:var(--silver); }
+        .mobile-menu .btn:hover { color: var(--bg) !important; }
+        .mobile-menu .mobile-menu-btns { display:flex; flex-direction:column; gap:12px; width:200px; }
+        .mobile-menu .mobile-menu-btns .btn { width:100%; text-align:center; }
+        @media (max-width:768px) { .nav-buttons { display:none; } .hamburger { display:flex; } }
 
         .doc-section { margin-bottom: 40px; }
         .doc-section h2 { font-size: 1.15rem; font-weight: 700; color: var(--light); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(195,199,206,0.08); }
@@ -93,8 +99,21 @@
                 <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
                 <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
             </div>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
         </nav>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#server-info" class="mobile-nav-link">Server Info</a>
+        <a href="index.html#commands" class="mobile-nav-link">Commands</a>
+        <a href="index.html#shop" class="mobile-nav-link">Shop</a>
+        <a href="spawners.html" class="mobile-nav-link">Spawners</a>
+        <a href="special-items.html" class="mobile-nav-link">Special Items</a>
+        <div class="mobile-menu-btns">
+            <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+            <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        </div>
+    </div>
 
     <div class="page-header">
         <div class="container">
@@ -245,6 +264,10 @@
     <script>
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+        document.querySelectorAll('.mobile-nav-link, .mobile-menu-btns .btn').forEach(l => l.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
     </script>
 </body>
 </html>
