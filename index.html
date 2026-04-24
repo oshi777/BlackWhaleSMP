@@ -1820,7 +1820,7 @@ function copyIP(btn, text) {
         });
 
         function formatPrice(val) {
-            if (val === '-') return 'â€”';
+            if (val === '-') return '—';
             const num = parseFloat(val.replace(/,/g, ''));
             if (num >= 1000000000) {
                 const b = num / 1000000000;
