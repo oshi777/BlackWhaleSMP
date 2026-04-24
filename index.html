@@ -235,8 +235,7 @@
             background: var(--surface);
             border: 1px solid var(--muted);
             border-radius: 20px;
-            padding: 32px;
-            width: 340px;
+            padding: 28px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.4);
         }
 
@@ -247,29 +246,24 @@
             letter-spacing: 1.5px;
             color: var(--silver);
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        .server-stat {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(195,199,206,0.08);
-        }
-
-        .server-stat:last-child { border-bottom: none; }
-
+        .server-stat-table { width: 100%; border-collapse: collapse; }
+        .server-stat-table tr { border-bottom: 1px solid rgba(195,199,206,0.08); }
+        .server-stat-table tr:last-child { border-bottom: none; }
+        .server-stat-table td { padding: 9px 0; vertical-align: middle; white-space: nowrap; }
+        .server-stat-table td:first-child { padding-right: 10px; width: 32px; }
+        .server-stat-table td:nth-child(2) { padding-right: 20px; }
         .server-stat-icon {
-            width: 36px; height: 36px;
+            width: 32px; height: 32px;
             background: var(--muted);
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
+            font-size: 0.9rem;
         }
-
-        .server-stat-label { font-size: 0.8rem; color: var(--silver); }
-        .server-stat-value { font-size: 0.95rem; font-weight: 600; color: var(--light); }
+        .server-stat-label { font-size: 0.82rem; color: var(--silver); }
+        .server-stat-value { font-size: 0.92rem; font-weight: 600; color: var(--light); }
 
         /* ── SECTION TITLE ── */
         .section-title {
@@ -321,7 +315,7 @@
         @media (max-width: 992px) {
             .hero-content { flex-direction: column; text-align: center; }
             .hero-text { display: flex; flex-direction: column; align-items: center; }
-            .server-card { width: 100%; max-width: 400px; }
+            .server-card { width: auto; max-width: 340px; }
             h1 { font-size: 2.6rem; }
         }
 
@@ -330,7 +324,7 @@
             h1 { font-size: 2.2rem; }
             .hero-cta { justify-content: center; }
             .hero { padding-top: 100px; }
-            .server-card { width: 100%; margin: 0 auto; }
+            .server-card { width: auto; max-width: 340px; margin: 0 auto; }
         }
 
         @media (max-width: 480px) {
@@ -346,6 +340,9 @@
             .server-info-section { padding: 50px 0; }
             .commands-section { padding: 50px 0; }
             .shop-section { padding: 50px 0; }
+            .server-card { padding: 20px 16px; width: auto; max-width: 340px; margin: 0 auto; }
+            .server-stat-value { font-size: 0.85rem; white-space: nowrap; }
+            .server-stat-label { font-size: 0.72rem; }
         }
 
         /* ── SERVER INFO ── */
@@ -908,41 +905,33 @@
                 <div class="hero-image">
                     <div class="server-card glass">
                         <div class="server-card-title">Quick Info</div>
-                        <div class="server-stat">
-                            <div class="server-stat-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                            <div>
-                                <div class="server-stat-label">Difficulty</div>
-                                <div class="server-stat-value">Hard</div>
-                            </div>
-                        </div>
-                        <div class="server-stat">
-                            <div class="server-stat-icon"><i class="fa-solid fa-globe"></i></div>
-                            <div>
-                                <div class="server-stat-label">Gamemode</div>
-                                <div class="server-stat-value">Survival</div>
-                            </div>
-                        </div>
-                        <div class="server-stat">
-                            <div class="server-stat-icon"><i class="fa-solid fa-coins"></i></div>
-                            <div>
-                                <div class="server-stat-label">Starting Balance</div>
-                                <div class="server-stat-value">$500</div>
-                            </div>
-                        </div>
-                        <div class="server-stat">
-                            <div class="server-stat-icon"><i class="fa-solid fa-house"></i></div>
-                            <div>
-                                <div class="server-stat-label">Free Homes</div>
-                                <div class="server-stat-value">3 free, $500 each</div>
-                            </div>
-                        </div>
-                        <div class="server-stat">
-                            <div class="server-stat-icon"><i class="fa-solid fa-desktop"></i></div>
-                            <div>
-                                <div class="server-stat-label">Version</div>
-                                <div class="server-stat-value">1.21.11 (Java + Bedrock)</div>
-                            </div>
-                        </div>
+                        <table class="server-stat-table">
+                            <tr>
+                                <td><div class="server-stat-icon"><i class="fa-solid fa-gauge-high"></i></div></td>
+                                <td><div class="server-stat-label">Difficulty</div></td>
+                                <td><div class="server-stat-value">Hard</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="server-stat-icon"><i class="fa-solid fa-globe"></i></div></td>
+                                <td><div class="server-stat-label">Gamemode</div></td>
+                                <td><div class="server-stat-value">Survival</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="server-stat-icon"><i class="fa-solid fa-coins"></i></div></td>
+                                <td><div class="server-stat-label">Starting Balance</div></td>
+                                <td><div class="server-stat-value">$500</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="server-stat-icon"><i class="fa-solid fa-house"></i></div></td>
+                                <td><div class="server-stat-label">Free Homes</div></td>
+                                <td><div class="server-stat-value">3 free, $500 each</div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="server-stat-icon"><i class="fa-solid fa-desktop"></i></div></td>
+                                <td><div class="server-stat-label">Version</div></td>
+                                <td><div class="server-stat-value">1.21.11</div></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
