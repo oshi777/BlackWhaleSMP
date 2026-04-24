@@ -1695,6 +1695,24 @@
             catTabsEl.appendChild(btn);
         });
 
+        function formatPrice(val) {
+            if (val === '-') return '—';
+            const num = parseFloat(val.replace(/,/g, ''));
+            if (num >= 1000000000) {
+                const b = num / 1000000000;
+                return '$' + (b % 1 === 0 ? b : parseFloat(b.toFixed(2))) + 'b';
+            }
+            if (num >= 1000000) {
+                const m = num / 1000000;
+                return '$' + (m % 1 === 0 ? m : parseFloat(m.toFixed(2))) + 'm';
+            }
+            if (num >= 1000) {
+                const k = num / 1000;
+                return '$' + (k % 1 === 0 ? k : parseFloat(k.toFixed(2))) + 'k';
+            }
+            return '$' + val;
+        }
+
         function renderShopTable() {
             const body = document.getElementById('tableBody');
             const noRes = document.getElementById('noResults');
@@ -1733,8 +1751,8 @@
                 noRes.style.display = 'none';
                 body.innerHTML = rows.map(([item, buy, sell, cat]) =>
                     `<tr><td>${item}</td>
-                    <td class="${buy==='-'?'price-na':'price-buy'}">${buy==='-'?'—':'$'+buy}</td>
-                    <td class="${sell==='-'?'price-na':'price-sell'}">${sell==='-'?'—':'$'+sell}</td>
+                    <td class="${buy==='-'?'price-na':'price-buy'}">${formatPrice(buy)}</td>
+                    <td class="${sell==='-'?'price-na':'price-sell'}">${formatPrice(sell)}</td>
                     ${showCat?`<td style="color:var(--muted);font-size:0.82rem">${cat}</td>`:''}</tr>`
                 ).join('');
             }
