@@ -311,6 +311,52 @@
         .scroll-top.visible { opacity: 1; visibility: visible; }
         .scroll-top:hover { background: var(--silver); color: var(--bg); transform: translateY(-3px); }
 
+        /* ── HAMBURGER ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--light);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(11,12,14,0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--silver); }
+        .mobile-menu .mobile-menu-btns { display: flex; flex-direction: column; gap: 12px; width: 200px; }
+        .mobile-menu .mobile-menu-btns .btn { width: 100%; text-align: center; }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 992px) {
             .hero-content { flex-direction: column; text-align: center; }
@@ -321,17 +367,22 @@
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            h1 { font-size: 2.2rem; }
-            .hero-cta { justify-content: center; }
+            .nav-buttons { display: none; }
+            .hamburger { display: flex; }
+            h1 { font-size: 2rem; }
+            .hero-cta { flex-direction: column; align-items: center; width: 100%; }
+            .hero-cta .btn { width: 100%; max-width: 300px; }
             .hero { padding-top: 100px; }
             .server-card { width: auto; max-width: 340px; margin: 0 auto; }
+            .subheading { font-size: 1rem; }
+            .server-info-grid { grid-template-columns: 1fr; }
+            .commands-grid { grid-template-columns: 1fr; }
+            .tabs { flex-wrap: wrap; }
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            .subheading { font-size: 0.95rem; }
-            .hero-cta { flex-direction: column; align-items: stretch; }
-            .btn { width: 100%; }
+            h1 { font-size: 1.6rem; }
+            .subheading { font-size: 0.9rem; }
             .section-title { font-size: 1.5rem; }
             .section-sub { font-size: 0.9rem; }
             header { padding: 10px 0; }
@@ -340,9 +391,21 @@
             .server-info-section { padding: 50px 0; }
             .commands-section { padding: 50px 0; }
             .shop-section { padding: 50px 0; }
-            .server-card { padding: 20px 16px; width: auto; max-width: 340px; margin: 0 auto; }
-            .server-stat-value { font-size: 0.85rem; white-space: nowrap; }
-            .server-stat-label { font-size: 0.72rem; }
+            .server-card { padding: 20px 16px; }
+            .tabs { flex-direction: column; }
+            .tab-btn { width: 100%; }
+            .cat-tabs { gap: 6px; }
+            .cat-tab { padding: 6px 12px; font-size: 0.75rem; }
+            .info-item { padding: 16px; }
+            .info-item h3 { font-size: 0.95rem; }
+            .command-card { padding: 14px 16px; gap: 10px; }
+            .command-icon { min-width: 36px; height: 36px; font-size: 0.95rem; }
+            .command-name { font-size: 0.9rem; }
+            .command-description { font-size: 0.8rem; }
+            .price-table th, .price-table td { padding: 8px 12px; font-size: 0.8rem; }
+            .tab-btn { padding: 8px 16px; font-size: 0.8rem; }
+            .cat-tab { padding: 6px 14px; font-size: 0.8rem; }
+            .search-bar { max-width: 100%; }
         }
 
         /* ── SERVER INFO ── */
@@ -883,9 +946,23 @@
                 <div class="nav-buttons">
                     <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a>
                 </div>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </nav>
         </div>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#server-info" class="mobile-nav-link">Server Info</a>
+        <a href="#commands" class="mobile-nav-link">Commands</a>
+        <a href="#shop" class="mobile-nav-link">Shop</a>
+        <a href="spawners.html" class="mobile-nav-link">Spawners</a>
+        <a href="special-items.html" class="mobile-nav-link">Special Items</a>
+        <div class="mobile-menu-btns">
+            <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -1073,8 +1150,23 @@
     <script>
         const header = document.getElementById('header');
         const scrollTopBtn = document.getElementById('scrollTop');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        function copyIP(btn, text) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        document.querySelectorAll('.mobile-nav-link, .mobile-menu-btns .btn').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+function copyIP(btn, text) {
             const original = btn.textContent;
             navigator.clipboard.writeText(text).then(() => {
                 btn.textContent = 'Copied!';
