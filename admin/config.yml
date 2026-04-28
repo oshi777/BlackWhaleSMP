@@ -23,10 +23,8 @@ collections:
                 hint: "e.g. 1.21.11"
               - label: "Date"
                 name: "date"
-                widget: "date"
-                format: "YYYY-MM-DD"
-                date_format: "YYYY-MM-DD"
-                time_format: false
+                widget: "string"
+                hint: "e.g. 1 May 2025"
               - label: "Notes"
                 name: "notes"
                 widget: "text"
