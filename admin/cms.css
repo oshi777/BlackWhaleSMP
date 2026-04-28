@@ -1,0 +1,101 @@
+:root {
+    --bg: #0B0C0E;
+    --surface: #1E2126;
+    --muted: #3A3F47;
+    --silver: #C3C7CE;
+    --light: #F8F8F9;
+}
+
+/* Background */
+body, #root, [class^="App-"] {
+    background: var(--bg) !important;
+    color: var(--light) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Top nav bar */
+[class^="AppHeader-"], [class*="AppHeader"] {
+    background: var(--surface) !important;
+    border-bottom: 1px solid rgba(195,199,206,0.1) !important;
+    box-shadow: none !important;
+}
+
+/* Sidebar */
+[class*="Sidebar"], [class*="sidebar"] {
+    background: var(--surface) !important;
+    border-right: 1px solid rgba(195,199,206,0.1) !important;
+}
+
+/* Nav links */
+[class*="Nav"] a, [class*="nav"] a {
+    color: var(--silver) !important;
+}
+[class*="Nav"] a:hover, [class*="nav"] a.active {
+    color: var(--light) !important;
+    background: var(--muted) !important;
+}
+
+/* Main content area */
+[class*="Page-"], [class*="Collection"], [class*="Editor"] {
+    background: var(--bg) !important;
+    color: var(--light) !important;
+}
+
+/* Cards */
+[class*="Card"], [class*="ListCard"] {
+    background: var(--surface) !important;
+    border: 1px solid rgba(195,199,206,0.08) !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    color: var(--light) !important;
+}
+
+/* Inputs */
+input, textarea, select {
+    background: var(--surface) !important;
+    border: 1px solid var(--muted) !important;
+    border-radius: 8px !important;
+    color: var(--light) !important;
+}
+input:focus, textarea:focus {
+    border-color: var(--silver) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Labels */
+label {
+    color: var(--silver) !important;
+}
+
+/* Buttons */
+button {
+    font-family: 'Inter', sans-serif !important;
+}
+button[class*="success"], button[class*="primary"] {
+    background: var(--muted) !important;
+    color: var(--light) !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+button[class*="success"]:hover, button[class*="primary"]:hover {
+    background: var(--silver) !important;
+    color: var(--bg) !important;
+}
+
+/* Toolbar */
+[class*="Toolbar"], [class*="toolbar"] {
+    background: var(--surface) !important;
+    border-bottom: 1px solid rgba(195,199,206,0.1) !important;
+    box-shadow: none !important;
+}
+
+/* Scrollbar */
+* {
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--muted) var(--surface) !important;
+}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--silver); }

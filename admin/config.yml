@@ -5,6 +5,8 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
+custom_css: "/admin/cms.css"
+
 collections:
   - name: "versionlog"
     label: "Version Log"
