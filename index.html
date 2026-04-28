@@ -2000,9 +2000,13 @@ function copyIP(btn, text) {
             .then(r => r.ok ? r.json() : null)
             .then(s => {
                 if (!s) return;
-                if (s.hero_badge) document.getElementById('heroBadge').textContent = s.hero_badge;
+                if (s.server_version) {
+                    document.getElementById('statVersion').textContent = s.server_version;
+                    document.getElementById('heroBadge').textContent = 'Server Online — Version ' + s.server_version;
+                } else if (s.hero_badge) {
+                    document.getElementById('heroBadge').textContent = s.hero_badge;
+                }
                 if (s.hero_subheading) document.getElementById('heroSubheading').textContent = s.hero_subheading;
-                if (s.server_version) document.getElementById('statVersion').textContent = s.server_version;
                 if (s.starting_balance) document.getElementById('statBalance').textContent = s.starting_balance;
                 if (s.java_ip) {
                     document.getElementById('javaIpDisplay').textContent = s.java_ip;

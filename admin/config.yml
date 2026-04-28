@@ -13,11 +13,6 @@ collections:
         label: "General Settings"
         file: "_data/settings.json"
         fields:
-          - label: "Hero Badge Text"
-            name: "hero_badge"
-            widget: "string"
-            default: "Server Online — Version 1.21.11"
-
           - label: "Hero Subheading"
             name: "hero_subheading"
             widget: "text"
