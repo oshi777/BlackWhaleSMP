@@ -1,3 +1,8 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "version": "1.0.0 (stable)",
+      "notes": "all bugs have been fixed, and the shop in website now lists all items avalable on server"
+    }
+  ]
 }
