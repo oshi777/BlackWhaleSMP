@@ -864,52 +864,6 @@
             overflow-y: auto;
         }
 
-        /* == VERSION LOG == */
-        .versionlog-section {
-            padding: 90px 0;
-            border-top: 2px solid rgba(195,199,206,0.2);
-        }
-        .vlog-entry {
-            background: var(--surface);
-            border: 1px solid rgba(195,199,206,0.08);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-bottom: 16px;
-        }
-        .vlog-entry:last-child { margin-bottom: 0; }
-        .vlog-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .vlog-version {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--light);
-            background: var(--muted);
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-family: monospace;
-        }
-        .vlog-date {
-            font-size: 0.85rem;
-            color: var(--muted);
-        }
-        .vlog-notes {
-            font-size: 0.9rem;
-            color: var(--silver);
-            line-height: 1.6;
-        }
-        .vlog-empty {
-            text-align: center;
-            color: var(--muted);
-            padding: 40px 0;
-            font-size: 0.95rem;
-        }
-
         /* == FOOTER == */
         footer {
             background: #0B0C0E;
@@ -1167,16 +1121,6 @@
         </div>
     </section>
 
-    <!-- VERSION LOG -->
-    <section class="versionlog-section" id="version-log">
-        <div class="container">
-            <h2 class="section-title">Version Log</h2>
-            <p class="section-sub">A history of server updates and changes.</p>
-            <div class="section-divider"></div>
-            <div id="versionlog-entries"><div class="vlog-empty">No entries yet.</div></div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer>
         <div class="container">
@@ -1189,6 +1133,7 @@
                         <li><a href="#shop"><i class="fas fa-coins" aria-hidden="true"></i> Shop Prices</a></li>
                         <li><a href="spawners.html"><i class="fas fa-skull" aria-hidden="true"></i> Spawners</a></li>
                         <li><a href="special-items.html"><i class="fas fa-book" aria-hidden="true"></i> Special Items</a></li>
+                        <li><a href="versionlog.html"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i> Version Log</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -2050,25 +1995,6 @@ function copyIP(btn, text) {
                 if (!user) window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
             });
         }
-
-        // Load version log
-        fetch('/_data/versionlog.json')
-            .then(r => r.ok ? r.json() : null)
-            .then(data => {
-                if (!data || !data.entries || !data.entries.length) return;
-                const container = document.getElementById('versionlog-entries');
-                if (!container) return;
-                const sorted = [...data.entries].sort((a, b) => new Date(b.date) - new Date(a.date));
-                container.innerHTML = sorted.map(e => `
-                    <div class="vlog-entry">
-                        <div class="vlog-header">
-                            <span class="vlog-version">${e.version}</span>
-                            <span class="vlog-date">${new Date(e.date).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})}</span>
-                        </div>
-                        <div class="vlog-notes">${e.notes.replace(/\n/g, '<br>')}</div>
-                    </div>`).join('');
-            })
-            .catch(() => {});
     </script>
 </body>
 </html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Log — BlackWhaleSMP</title>
+    <link rel="canonical" href="https://blackwhalesmp.netlify.app/versionlog.html">
+    <link rel="icon" href="logo.png" type="image/png">
+    <meta name="description" content="BlackWhaleSMP server version history and update log.">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0B0C0E;
+            --surface: #1E2126;
+            --muted: #3A3F47;
+            --silver: #C3C7CE;
+            --light: #F8F8F9;
+            --glass: rgba(30,33,38,0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--surface); }
+        ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+        * { scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface); }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(11,12,14,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .logo img { width: 40px; height: 40px; object-fit: contain; background: var(--muted); border-radius: 8px; padding: 4px; }
+
+        .btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary { background: var(--muted); color: var(--light); }
+        .btn-primary:hover { background: var(--silver); color: var(--bg); transform: translateY(-2px); }
+
+        .page-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--light) 0%, var(--silver) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .page-hero p {
+            color: var(--silver);
+            font-size: 1rem;
+        }
+
+        .section-divider {
+            width: 50px; height: 3px;
+            background: var(--muted);
+            border-radius: 2px;
+            margin: 16px auto 0;
+        }
+
+        .vlog-list {
+            padding: 0 0 80px;
+        }
+
+        .vlog-entry {
+            background: var(--surface);
+            border: 1px solid rgba(195,199,206,0.08);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .vlog-entry:hover {
+            border-color: var(--muted);
+            transform: translateY(-2px);
+        }
+
+        .vlog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vlog-version {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--light);
+            background: var(--muted);
+            padding: 4px 14px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
+        .vlog-date {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .vlog-notes {
+            font-size: 0.92rem;
+            color: var(--silver);
+            line-height: 1.7;
+        }
+
+        .vlog-empty {
+            text-align: center;
+            color: var(--muted);
+            padding: 60px 0;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background: var(--bg);
+            border-top: 1px solid rgba(195,199,206,0.08);
+            padding: 28px 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .page-hero h1 { font-size: 2rem; }
+            .vlog-entry { padding: 18px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="BlackWhaleSMP">
+                <span>BlackWhaleSMP</span>
+            </a>
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </nav>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <h1><i class="fas fa-clock-rotate-left" style="font-size:2rem;margin-bottom:16px;display:block;-webkit-text-fill-color:var(--silver)"></i>Version Log</h1>
+            <p>A history of server updates and changes.</p>
+            <div class="section-divider"></div>
+        </div>
+    </div>
+
+    <div class="vlog-list">
+        <div class="container">
+            <div id="versionlog-entries"><div class="vlog-empty">No entries yet.</div></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 BlackWhaleSMP. All rights reserved.
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        fetch('/_data/versionlog.json')
+            .then(r => r.ok ? r.json() : null)
+            .then(data => {
+                if (!data || !data.entries || !data.entries.length) return;
+                const container = document.getElementById('versionlog-entries');
+                const sorted = [...data.entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+                container.innerHTML = sorted.map(e => `
+                    <div class="vlog-entry">
+                        <div class="vlog-header">
+                            <span class="vlog-version">v${e.version}</span>
+                            <span class="vlog-date">${new Date(e.date).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})}</span>
+                        </div>
+                        <div class="vlog-notes">${e.notes.replace(/\n/g, '<br>')}</div>
+                    </div>`).join('');
+            })
+            .catch(() => {});
+    </script>
+</body>
+</html>

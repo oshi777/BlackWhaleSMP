@@ -5,6 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BlackWhaleSMP Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0C0E;
+      --surface: #1E2126;
+      --muted: #3A3F47;
+      --silver: #C3C7CE;
+      --light: #F8F8F9;
+    }
+
+    /* Overall background */
+    body, #nc-root {
+      background: var(--bg) !important;
+      font-family: 'Inter', sans-serif !important;
+      color: var(--light) !important;
+    }
+
+    /* Top toolbar */
+    [class*="Toolbar"], [class*="AppHeader"], header {
+      background: var(--surface) !important;
+      border-bottom: 1px solid rgba(195,199,206,0.1) !important;
+      box-shadow: none !important;
+    }
+
+    /* Sidebar */
+    [class*="Nav"], [class*="Sidebar"] {
+      background: var(--surface) !important;
+      border-right: 1px solid rgba(195,199,206,0.1) !important;
+    }
+
+    [class*="NavLink"], [class*="SidebarNavLink"] {
+      color: var(--silver) !important;
+      border-radius: 8px !important;
+    }
+
+    [class*="NavLink"]:hover, [class*="NavLink"][class*="active"] {
+      background: var(--muted) !important;
+      color: var(--light) !important;
+    }
+
+    /* Cards / collection items */
+    [class*="Card"], [class*="ListCard"], [class*="EntryCard"] {
+      background: var(--surface) !important;
+      border: 1px solid rgba(195,199,206,0.08) !important;
+      border-radius: 12px !important;
+      box-shadow: none !important;
+      color: var(--light) !important;
+    }
+
+    [class*="Card"]:hover {
+      border-color: var(--muted) !important;
+    }
+
+    /* Buttons */
+    button[class*="primary"], [class*="Button"][class*="primary"] {
+      background: var(--muted) !important;
+      color: var(--light) !important;
+      border: none !important;
+      border-radius: 8px !important;
+    }
+
+    button[class*="primary"]:hover {
+      background: var(--silver) !important;
+      color: var(--bg) !important;
+    }
+
+    /* Inputs */
+    input, textarea, select, [class*="Input"], [class*="TextArea"] {
+      background: var(--surface) !important;
+      border: 1px solid var(--muted) !important;
+      border-radius: 8px !important;
+      color: var(--light) !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--silver) !important;
+      outline: none !important;
+    }
+
+    /* Labels */
+    label, [class*="Label"] {
+      color: var(--silver) !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Editor panel */
+    [class*="EditorContainer"], [class*="Editor"], [class*="ControlPane"] {
+      background: var(--bg) !important;
+    }
+
+    /* Scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--muted) var(--surface);
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--silver); }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
