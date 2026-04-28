@@ -225,14 +225,18 @@
                 if (!data || !data.entries || !data.entries.length) return;
                 const container = document.getElementById('versionlog-entries');
                 const sorted = [...data.entries].sort((a, b) => new Date(b.date) - new Date(a.date));
-                container.innerHTML = sorted.map(e => `
+                container.innerHTML = sorted.map(e => {
+                    const [y, m, d] = e.date.split('-');
+                    const dateStr = new Date(y, m - 1, d).toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+                    return `
                     <div class="vlog-entry">
                         <div class="vlog-header">
                             <span class="vlog-version">v${e.version}</span>
-                            <span class="vlog-date">${new Date(e.date).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})}</span>
+                            <span class="vlog-date">${dateStr}</span>
                         </div>
                         <div class="vlog-notes">${e.notes.replace(/\n/g, '<br>')}</div>
-                    </div>`).join('');
+                    </div>`;
+                }).join('');
             })
             .catch(() => {});
     </script>

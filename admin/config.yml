@@ -25,6 +25,8 @@ collections:
                 name: "date"
                 widget: "date"
                 format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
               - label: "Notes"
                 name: "notes"
                 widget: "text"
