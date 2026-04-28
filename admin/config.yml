@@ -2,68 +2,27 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
-
 collections:
-  - name: "settings"
-    label: "Site Settings"
+  - name: "versionlog"
+    label: "Version Log"
     files:
-      - name: "general"
-        label: "General Settings"
-        file: "_data/settings.json"
+      - name: "versionlog"
+        label: "Version Log"
+        file: "_data/versionlog.json"
         fields:
-          - label: "Hero Subheading"
-            name: "hero_subheading"
-            widget: "text"
-            default: "An survival experience. Hard difficulty, economy, auction house, and a thriving community."
-
-          - label: "Java IP"
-            name: "java_ip"
-            widget: "string"
-            default: "homes-dying.gl.joinmc.link"
-
-          - label: "Bedrock IP"
-            name: "bedrock_ip"
-            widget: "string"
-            default: "wanted-businesses.gl.at.ply.gg"
-
-          - label: "Bedrock Port"
-            name: "bedrock_port"
-            widget: "string"
-            default: "3244"
-
-          - label: "Discord Invite URL"
-            name: "discord_url"
-            widget: "string"
-            default: "https://discord.gg/MxjKHbhrRq"
-
-          - label: "Starting Balance"
-            name: "starting_balance"
-            widget: "string"
-            default: "$500"
-
-          - label: "Server Version"
-            name: "server_version"
-            widget: "string"
-            default: "1.21.11"
-
-  - name: "announcements"
-    label: "Announcements"
-    folder: "_data/announcements"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Message"
-        name: "body"
-        widget: "markdown"
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Active"
-        name: "active"
-        widget: "boolean"
-        default: true
+          - label: "Entries"
+            name: "entries"
+            widget: "list"
+            fields:
+              - label: "Version"
+                name: "version"
+                widget: "string"
+                hint: "e.g. 1.21.11"
+              - label: "Date"
+                name: "date"
+                widget: "date"
+                format: "YYYY-MM-DD"
+              - label: "Notes"
+                name: "notes"
+                widget: "text"
+                hint: "What changed in this version"

@@ -864,6 +864,52 @@
             overflow-y: auto;
         }
 
+        /* == VERSION LOG == */
+        .versionlog-section {
+            padding: 90px 0;
+            border-top: 2px solid rgba(195,199,206,0.2);
+        }
+        .vlog-entry {
+            background: var(--surface);
+            border: 1px solid rgba(195,199,206,0.08);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+        }
+        .vlog-entry:last-child { margin-bottom: 0; }
+        .vlog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .vlog-version {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--light);
+            background: var(--muted);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        .vlog-date {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .vlog-notes {
+            font-size: 0.9rem;
+            color: var(--silver);
+            line-height: 1.6;
+        }
+        .vlog-empty {
+            text-align: center;
+            color: var(--muted);
+            padding: 40px 0;
+            font-size: 0.95rem;
+        }
+
         /* == FOOTER == */
         footer {
             background: #0B0C0E;
@@ -959,7 +1005,7 @@
                     <a href="rules.html">Rules</a>
                 </div>
                 <div class="nav-buttons">
-                    <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank" id="discordNavBtn"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a>
+                    <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a>
                 </div>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
                     <span></span><span></span><span></span>
@@ -976,7 +1022,7 @@
         <a href="special-items.html" class="mobile-nav-link">Special Items</a>
         <a href="rules.html" class="mobile-nav-link">Rules</a>
         <div class="mobile-menu-btns">
-            <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank" id="discordMobileBtn"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://discord.gg/MxjKHbhrRq" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Discord</a>
         </div>
     </div>
 
@@ -986,10 +1032,10 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="hero-badge">
-                        <span></span> <span id="heroBadge">Server Online — Version 1.21.11</span>
+                        <span></span> Server Online — Version 1.21.11
                     </div>
                     <h1>BlackWhaleSMP</h1>
-                    <p class="subheading" id="heroSubheading">An survival experience. Hard difficulty, economy, auction house, and a thriving community.</p>
+                    <p class="subheading">An survival experience. Hard difficulty, economy, auction house, and a thriving community.</p>
                     <div class="hero-cta">
                         <a href="#server-info" class="btn btn-primary">Get Server IP</a>
                         <a href="#commands" class="btn btn-secondary">View Commands</a>
@@ -1012,7 +1058,7 @@
                             <tr>
                                 <td><div class="server-stat-icon"><i class="fa-solid fa-coins"></i></div></td>
                                 <td><div class="server-stat-label">Starting Balance</div></td>
-                                <td><div class="server-stat-value" id="statBalance">$500</div></td>
+                                <td><div class="server-stat-value">$500</div></td>
                             </tr>
                             <tr>
                                 <td><div class="server-stat-icon"><i class="fa-solid fa-house"></i></div></td>
@@ -1022,7 +1068,7 @@
                             <tr>
                                 <td><div class="server-stat-icon"><i class="fa-solid fa-desktop"></i></div></td>
                                 <td><div class="server-stat-label">Version</div></td>
-                                <td><div class="server-stat-value" id="statVersion">1.21.11</div></td>
+                                <td><div class="server-stat-value">1.21.11</div></td>
                             </tr>
                         </table>
                     </div>
@@ -1042,17 +1088,17 @@
                         <div class="info-icon"><i class="fa-solid fa-globe"></i></div>
                         <h3>Java IP</h3>
                         <p>Connect with any Java client (1.21.11)</p>
-                        <code id="javaIpDisplay">homes-dying.gl.joinmc.link</code>
-                        <button class="copy-btn" id="javaIpCopyBtn" onclick="copyIP(this, 'homes-dying.gl.joinmc.link')">Copy IP</button>
+                        <code>homes-dying.gl.joinmc.link</code>
+                        <button class="copy-btn" onclick="copyIP(this, 'homes-dying.gl.joinmc.link')">Copy IP</button>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-mobile-screen"></i></div>
                         <h3>Bedrock IP</h3>
                         <p>Bedrock players</p>
-                        <code id="bedrockIpDisplay">wanted-businesses.gl.at.ply.gg</code>
-                        <button class="copy-btn" id="bedrockIpCopyBtn" onclick="copyIP(this, 'wanted-businesses.gl.at.ply.gg')">Copy IP</button>
-                        <code style="margin-top: 8px;" id="bedrockPortDisplay">Port: 3244</code>
-                        <button class="copy-btn" id="bedrockPortCopyBtn" onclick="copyIP(this, '3244')">Copy Port</button>
+                        <code>wanted-businesses.gl.at.ply.gg</code>
+                        <button class="copy-btn" onclick="copyIP(this, 'wanted-businesses.gl.at.ply.gg')">Copy IP</button>
+                        <code style="margin-top: 8px;">Port: 3244</code>
+                        <button class="copy-btn" onclick="copyIP(this, '3244')">Copy Port</button>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-dice"></i></div>
@@ -1067,12 +1113,12 @@
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>Economy</h3>
-                        <p id="economyDesc">Starting balance: <strong>$500</strong><br>Use /shop, /ah, and /sellall to grow your wealth.</p>
+                        <p>Starting balance: <strong>$500</strong><br>Use /shop, /ah, and /sellall to grow your wealth.</p>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-house"></i></div>
                         <h3>Homes</h3>
-                        <p id="homesDesc"><strong>3 free homes</strong> to start.<br>Extra homes cost <strong>$500 each</strong> (max 10 total).<br>Making a home public costs <strong>$200</strong>.</p>
+                        <p><strong>3 free homes</strong> to start.<br>Extra homes cost <strong>$500 each</strong> (max 10 total).<br>Making a home public costs <strong>$200</strong>.</p>
                     </div>
                 </div>
             </div>
@@ -1121,6 +1167,16 @@
         </div>
     </section>
 
+    <!-- VERSION LOG -->
+    <section class="versionlog-section" id="version-log">
+        <div class="container">
+            <h2 class="section-title">Version Log</h2>
+            <p class="section-sub">A history of server updates and changes.</p>
+            <div class="section-divider"></div>
+            <div id="versionlog-entries"><div class="vlog-empty">No entries yet.</div></div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <div class="container">
@@ -1138,7 +1194,7 @@
                 <div class="footer-col">
                     <h3>Connect</h3>
                     <ul class="footer-links">
-                        <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank" id="discordFooterBtn"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
+                        <li><a href="https://discord.gg/MxjKHbhrRq" target="_blank"><i class="fab fa-discord" aria-hidden="true"></i> Discord</a></li>
                         <li><a href="mailto:blackwhalesmp@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> blackwhalesmp@gmail.com</a></li>
                         <li><a href="https://forms.gle/mxeg2DpXF7q8PiGa8" target="_blank"><i class="fas fa-shield-halved" aria-hidden="true"></i> Apply for Moderator</a></li>
                     </ul>
@@ -1154,8 +1210,8 @@
                 <div class="footer-col">
                     <h3>Server IP</h3>
                     <ul class="footer-links">
-                        <li><span style="cursor:default;user-select:all;"><i class="fas fa-cube" aria-hidden="true"></i> Java: <span id="footerJavaIp">homes-dying.gl.joinmc.link</span></span></li>
-                        <li><span style="cursor:default;user-select:all;"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: <span id="footerBedrockIp">wanted-businesses.gl.at.ply.gg:3244</span></span></li>
+                        <li><span style="cursor:default;user-select:all;"><i class="fas fa-cube" aria-hidden="true"></i> Java: homes-dying.gl.joinmc.link</span></li>
+                        <li><span style="cursor:default;user-select:all;"><i class="fas fa-tablet-alt" aria-hidden="true"></i> Bedrock: wanted-businesses.gl.at.ply.gg:3244</span></li>
                     </ul>
                 </div>
             </div>
@@ -1995,42 +2051,22 @@ function copyIP(btn, text) {
             });
         }
 
-        // Load CMS-managed settings
-        fetch('/_data/settings.json')
+        // Load version log
+        fetch('/_data/versionlog.json')
             .then(r => r.ok ? r.json() : null)
-            .then(s => {
-                if (!s) return;
-                if (s.server_version) {
-                    document.getElementById('statVersion').textContent = s.server_version;
-                    document.getElementById('heroBadge').textContent = 'Server Online — Version ' + s.server_version;
-                } else if (s.hero_badge) {
-                    document.getElementById('heroBadge').textContent = s.hero_badge;
-                }
-                if (s.hero_subheading) document.getElementById('heroSubheading').textContent = s.hero_subheading;
-                if (s.starting_balance) document.getElementById('statBalance').textContent = s.starting_balance;
-                if (s.java_ip) {
-                    document.getElementById('javaIpDisplay').textContent = s.java_ip;
-                    document.getElementById('javaIpCopyBtn').onclick = () => copyIP(document.getElementById('javaIpCopyBtn'), s.java_ip);
-                    document.getElementById('footerJavaIp').textContent = s.java_ip;
-                }
-                if (s.bedrock_ip || s.bedrock_port) {
-                    const ip = s.bedrock_ip || 'wanted-businesses.gl.at.ply.gg';
-                    const port = s.bedrock_port || '3244';
-                    document.getElementById('bedrockIpDisplay').textContent = ip;
-                    document.getElementById('bedrockIpCopyBtn').onclick = () => copyIP(document.getElementById('bedrockIpCopyBtn'), ip);
-                    document.getElementById('bedrockPortDisplay').textContent = 'Port: ' + port;
-                    document.getElementById('bedrockPortCopyBtn').onclick = () => copyIP(document.getElementById('bedrockPortCopyBtn'), port);
-                    document.getElementById('footerBedrockIp').textContent = ip + ':' + port;
-                }
-                if (s.discord_url) {
-                    ['discordNavBtn','discordMobileBtn','discordFooterBtn'].forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el) el.href = s.discord_url;
-                    });
-                }
-                if (s.starting_balance) {
-                    document.getElementById('economyDesc').innerHTML = 'Starting balance: <strong>' + s.starting_balance + '</strong><br>Use /shop, /ah, and /sellall to grow your wealth.';
-                }
+            .then(data => {
+                if (!data || !data.entries || !data.entries.length) return;
+                const container = document.getElementById('versionlog-entries');
+                if (!container) return;
+                const sorted = [...data.entries].sort((a, b) => new Date(b.date) - new Date(a.date));
+                container.innerHTML = sorted.map(e => `
+                    <div class="vlog-entry">
+                        <div class="vlog-header">
+                            <span class="vlog-version">${e.version}</span>
+                            <span class="vlog-date">${new Date(e.date).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})}</span>
+                        </div>
+                        <div class="vlog-notes">${e.notes.replace(/\n/g, '<br>')}</div>
+                    </div>`).join('');
             })
             .catch(() => {});
     </script>
