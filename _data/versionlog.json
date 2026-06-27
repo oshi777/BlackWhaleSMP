@@ -1,3 +1,9 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "version": "Test",
+      "date": "Test date",
+      "notes": "Test notes\n\n"
+    }
+  ]
 }
